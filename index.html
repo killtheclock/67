@@ -4,31 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <h1>DASHBOARD <span style="font-weight:600; color:var(--accent);">MATH</span></h1>
+        <h1>DASHBOARD <span style="color:var(--accent)">MATH</span></h1>
     </header>
 
     <main id="category-selector">
-        <div class="category-card" onclick="loadQuiz('factorization')">
-            <div class="exercise-count" data-cat="factorization">Loading...</div>
-            <h3 style="margin: 10px 0;">Παραγοντοποίηση</h3>
-            <p style="color: var(--text-muted); font-size: 0.8rem;">Ασκήσεις με κοινό παράγοντα και ταυτότητες.</p>
+        <div class="category-card" onclick="showSubcategories('factorization')">
+            <h3>Παραγοντοποίηση</h3>
+            <p>Επίλεξε μέθοδο</p>
         </div>
-        
-        <div class="category-card" onclick="loadQuiz('identities')">
-            <div class="exercise-count" data-cat="identities">Loading...</div>
-            <h3 style="margin: 10px 0;">Ταυτότητες</h3>
-            <p style="color: var(--text-muted); font-size: 0.8rem;">Ανάπτυγμα τετραγώνου και διαφορά τετραγώνων.</p>
+        <div class="category-card" onclick="showSubcategories('identities')">
+            <h3>Ταυτότητες</h3>
+            <p>Βασικά αναπτύγματα</p>
         </div>
     </main>
 
+    <div id="subcategory-selector" class="hidden"></div>
+
     <section id="quiz-container" class="hidden">
         <div id="card-stack"></div>
-        <button class="back-btn" onclick="window.location.reload()">← BACK TO DASHBOARD</button>
+        <button class="back-btn" onclick="window.location.reload()">BACK TO DASHBOARD</button>
     </section>
 
     <script src="assets/js/quiz.js"></script>
