@@ -1,127 +1,111 @@
 :root {
     --bg-color: #ffffff;
     --text-color: #000000;
-    --border-color: #000000;
-    --accent-color: #000000;
-    --hover-bg: #f0f0f0;
-    --font-main: 'Courier New', Courier, monospace;
+    --accent: #ff0000; /* Red για κρίσιμα στοιχεία */
+    --system-green: #00aa00;
+    --font-mono: 'Courier New', Courier, monospace;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: var(--font-main);
-    line-height: 1.2;
-    padding: 10px;
-    font-size: 14px;
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+    width: 100vw;
 }
 
-/* Global Elements */
-h1, h2, h3 { font-weight: bold; text-transform: uppercase; }
-button { font-family: var(--font-main); cursor: pointer; text-transform: uppercase; background: none; border: none; }
-.hidden { display: none !important; }
-
-/* Header & Progress */
 header {
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    border-bottom: 4px solid #000;
+    padding: 10px;
+    background: #000;
+    color: #fff;
 }
 
 #progress-container {
+    height: 10px;
+    background: #eee;
     width: 100%;
-    height: 15px;
-    border: 2px solid var(--border-color);
-    margin-top: 10px;
 }
-
 #progress-bar {
     height: 100%;
-    background-color: var(--accent-color);
+    background: var(--system-green);
     width: 0%;
-    transition: width 0.2s linear;
+    transition: width 0.3s ease;
 }
 
-/* Category Selector (image_2.png style but inverted) */
-#category-selector {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
+/* Category Grid - EDGE TO EDGE */
+#category-selector { display: flex; flex-direction: column; }
 
 .category-card {
-    border: 2px solid var(--border-color);
-    padding: 15px;
-    transition: background 0.1s;
+    border-bottom: 2px solid #000;
+    padding: 20px 10px;
+    width: 100%;
+    position: relative;
 }
 
-.category-card:active { background-color: var(--hover-bg); }
-
-.category-card h3 { font-size: 1.1rem; margin-bottom: 4px; }
-.category-card p { font-size: 0.9rem; }
-.count-tag { font-weight: bold; float: right; }
+.category-card h3 { color: var(--accent); font-size: 1.4rem; }
+.count-tag { 
+    position: absolute; right: 10px; top: 20px; 
+    background: #000; color: #fff; padding: 2px 6px;
+    font-weight: bold;
+}
 
 /* Quiz Container */
-#quiz-container { width: 100%; }
+.quiz-card { width: 100%; padding: 15px 5px; }
 
-.quiz-card {
-    border: 2px solid var(--border-color);
-    padding: 15px;
+/* FIX: Scaling Math */
+.question-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
     width: 100%;
 }
 
-.question-text {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    word-wrap: break-word;
-}
-
-/* MathJax Width Fix */
-.MathJax {
+/* Force MathJax to scale down, never wrap */
+.mjx-container {
     max-width: 100% !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
+    font-size: 100% !important; /* Θα ελεγχθεί από το JS */
 }
 
-/* Options Grid */
-.options-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+/* Options - Full Width */
+.options-grid { display: flex; flex-direction: column; width: 100%; }
 
 .opt-btn {
-    border: 2px solid var(--border-color);
-    padding: 15px;
+    border: 2px solid #000;
+    margin-bottom: -2px; /* Σύνορα που ακουμπούν */
+    padding: 20px 10px;
     text-align: left;
-    font-size: 1rem;
-    width: 100%;
+    font-size: 1.1rem;
+    background: #fff;
+    font-weight: bold;
 }
 
-.opt-btn:active { background-color: var(--hover-bg); }
+.opt-btn:active { background: #000; color: #fff; }
 
-/* Feedback (Instead of Popups) */
+/* Feedback Bar */
 #feedback-bar {
-    border: 2px solid var(--border-color);
-    padding: 10px;
-    margin-bottom: 10px;
-    font-weight: bold;
+    padding: 15px;
+    background: #000;
+    color: #fff;
     text-align: center;
-    min-height: 40px;
-}
-.feedback-correct { background-color: #ccffcc; color: #006600; }
-.feedback-wrong { background-color: #ffcccc; color: #660000; }
-
-/* Navigation */
-.nav-btn {
-    border: 2px solid var(--border-color);
-    padding: 10px;
-    width: 100%;
-    margin-top: 10px;
     font-weight: bold;
+    text-transform: uppercase;
 }
-.nav-btn:active { background-color: var(--hover-bg); }
+
+.nav-btn {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
