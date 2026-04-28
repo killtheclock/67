@@ -1,65 +1,9 @@
 [
-  {
-    "category": "algebra_basics",
-    "subcategory": "monomials",
-    "question": "Πράξη: 3x² · 4x³",
-    "options": ["12x⁵", "7x⁵", "12x⁶", "7x⁶"],
-    "answer": "12x⁵"
-  },
-  {
-    "category": "algebra_basics",
-    "subcategory": "polynomials",
-    "question": "Βαθμός του πολυωνύμου: x³ + 5x² - 1",
-    "options": ["3", "2", "5", "1"],
-    "answer": "3"
-  },
-  {
-    "category": "identities",
-    "subcategory": "square_sum",
-    "question": "Ανάπτυγμα: (x + 4)²",
-    "options": ["x² + 8x + 16", "x² + 16", "x² + 4x + 16", "x² + 8x + 8"],
-    "answer": "x² + 8x + 16"
-  },
-  {
-    "category": "identities",
-    "subcategory": "diff_squares",
-    "question": "Ανάπτυγμα: (x - 3)(x + 3)",
-    "options": ["x² - 9", "x² + 9", "x² - 6", "x - 9"],
-    "answer": "x² - 9"
-  },
-  {
-    "category": "factorization",
-    "subcategory": "common_factor",
-    "question": "Παραγοντοποιήστε: 7x + 7y",
-    "options": ["7(x + y)", "7xy", "x(7 + y)", "7x + y"],
-    "answer": "7(x + y)"
-  },
-  {
-    "category": "factorization",
-    "subcategory": "grouping",
-    "question": "Παραγοντοποιήστε: ax + ay + bx + by",
-    "options": ["(a + b)(x + y)", "(a + x)(b + y)", "(ax + by)", "a(x + y) + b"],
-    "answer": "(a + b)(x + y)"
-  },
-  {
-    "category": "equations",
-    "subcategory": "quadratic",
-    "question": "Λύσεις της: x² - 7x + 10 = 0",
-    "options": ["2 και 5", "-2 και -5", "1 και 10", "0 και 7"],
-    "answer": "2 και 5"
-  },
-  {
-    "category": "equations",
-    "subcategory": "fractional",
-    "question": "Λύστε την: <div class='frac'><span class='top'>12</span><span class='bottom'>x</span></div> = 3",
-    "options": ["x = 4", "x = 3", "x = 36", "x = 9"],
-    "answer": "x = 4"
-  },
-  {
-    "category": "inequalities",
-    "subcategory": "first_degree",
-    "question": "Λύση της: 2x > 10",
-    "options": ["x > 5", "x < 5", "x > 20", "x = 5"],
-    "answer": "x > 5"
-  }
+  { "category": "ops", "subcategory": "monomial_ops", "question": "3x² · 2x³", "options": ["6x⁵", "6x⁶", "5x⁵", "6x"], "answer": "6x⁵" },
+  { "category": "identities", "subcategory": "sq_sum", "question": "(x + 2)²", "options": ["x² + 4x + 4", "x² + 4", "x² + 2x + 4", "4x + 4"], "answer": "x² + 4x + 4" },
+  { "category": "factorization", "subcategory": "comm_fact", "question": "3x + 3y", "options": ["3(x + y)", "3xy", "x(3 + y)", "3x + y"], "answer": "3(x + y)" },
+  { "category": "rational", "subcategory": "limits", "question": "Περιορισμός για: <div class='frac'><span class='top'>1</span><span class='bottom'>x - 5</span></div>", "options": ["x ≠ 5", "x ≠ 0", "x ≠ -5", "x = 5"], "answer": "x ≠ 5" },
+  { "category": "equations", "subcategory": "quad_formula", "question": "Διακρίνουσα της x² - 4x + 4 = 0", "options": ["0", "4", "16", "-16"], "answer": "0" },
+  { "category": "geometry", "subcategory": "congruence", "question": "Κριτήριο Π-Γ-Π σημαίνει:", "options": ["Πλευρά-Γωνία-Πλευρά", "Περίμετρος-Γωνία-Πλευρά", "Πλευρά-Γωνία-Περίμετρος", "Πλευρά-Γινόμενο-Πλευρά"], "answer": "Πλευρά-Γωνία-Πλευρά" },
+  { "category": "trigonometry", "subcategory": "trig_identities", "question": "ημ²ω + συν²ω =", "options": ["1", "0", "2", "-1"], "answer": "1" }
 ]

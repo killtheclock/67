@@ -3,36 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math OS v2.9</title>
-    <link rel="stylesheet" href="assets/css/style.css?v=2.9">
+    <title>Math OS v3.0</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=3.0">
 </head>
 <body>
     <div id="progress-container"><div id="progress-bar"></div></div>
     
     <header>
-        <h1>SYSTEM_LOG // <span style="color:var(--text-muted)">MATH_G_GYMN</span></h1>
+        <h1>SYSTEM_LOG // <span style="color:var(--text-muted)">MATH_G_GYMN_FULL</span></h1>
     </header>
 
     <main id="category-selector">
-        <div class="category-card" onclick="showSubcategories('algebra_basics')">
-            <h3>ALGEBRA_BASICS</h3>
-            <p>DATA_SET_01 // Πράξεις</p>
+        <div class="category-card" onclick="showSubcategories('ops')">
+            <h3>OPERATIONS</h3>
+            <p>SET_01 // Πράξεις & Πολυώνυμα</p>
         </div>
         <div class="category-card" onclick="showSubcategories('identities')">
             <h3>IDENTITIES</h3>
-            <p>DATA_SET_02 // Ταυτότητες</p>
+            <p>SET_02 // Ταυτότητες</p>
         </div>
         <div class="category-card" onclick="showSubcategories('factorization')">
             <h3>FACTORIZATION</h3>
-            <p>DATA_SET_03 // Παραγοντοποίηση</p>
+            <p>SET_03 // Παραγοντοποίηση</p>
+        </div>
+        <div class="category-card" onclick="showSubcategories('rational')">
+            <h3>RATIONAL</h3>
+            <p>SET_04 // Ρητές Παραστάσεις</p>
         </div>
         <div class="category-card" onclick="showSubcategories('equations')">
             <h3>EQUATIONS</h3>
-            <p>DATA_SET_04 // Εξισώσεις</p>
+            <p>SET_05 // Εξισώσεις</p>
         </div>
         <div class="category-card" onclick="showSubcategories('inequalities')">
             <h3>INEQUALITIES</h3>
-            <p>DATA_SET_05 // Ανισώσεις</p>
+            <p>SET_06 // Ανισώσεις</p>
+        </div>
+        <div class="category-card" onclick="showSubcategories('systems')">
+            <h3>SYSTEMS</h3>
+            <p>SET_07 // Συστήματα</p>
+        </div>
+        <div class="category-card" onclick="showSubcategories('geometry')">
+            <h3>GEOMETRY</h3>
+            <p>SET_08 // Ισότητα & Ομοιότητα</p>
+        </div>
+        <div class="category-card" onclick="showSubcategories('trigonometry')">
+            <h3>TRIGONOMETRY</h3>
+            <p>SET_09 // Τριγωνομετρία</p>
         </div>
     </main>
 
@@ -42,6 +58,6 @@
         <div id="card-stack"></div>
     </section>
 
-    <script src="assets/js/quiz.js?v=2.9"></script>
+    <script src="assets/js/quiz.js?v=3.0"></script>
 </body>
 </html>
