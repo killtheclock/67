@@ -14,38 +14,24 @@
     "answer": "2α(α-2)"
   },
   {
-    "category": "identities",
-    "subcategory": "square_sum",
-    "question": "Ανάπτυγμα: (x + 3)²",
-    "options": ["x² + 6x + 9", "x² + 9", "x² + 3x + 9", "2x + 6"],
-    "answer": "x² + 6x + 9"
-  },
-  {
     "category": "equations",
-    "subcategory": "quadratic",
-    "question": "Λύσεις της εξίσωσης: x² - 5x + 6 = 0",
-    "options": ["2 και 3", "-2 και -3", "1 και 6", "0 και 5"],
-    "answer": "2 και 3"
-  },
-  {
-    "category": "equations",
-    "subcategory": "quadratic",
-    "question": "Πόσες λύσεις έχει η εξίσωση αν Δ > 0;",
-    "options": ["Δύο άνισες", "Μία διπλή", "Καμία (Αδύνατη)", "Άπειρες"],
-    "answer": "Δύο άνισες"
+    "subcategory": "fractional",
+    "question": "Λύστε την εξίσωση: <div class='frac'><span class='top'>x</span><span class='bottom'>2</span></div> = 4",
+    "options": ["x = 8", "x = 2", "x = 6", "x = 4"],
+    "answer": "x = 8"
   },
   {
     "category": "equations",
     "subcategory": "fractional",
-    "question": "Περιορισμός για την: 1 / (x - 2) = 5",
-    "options": ["x ≠ 2", "x ≠ 0", "x ≠ -2", "x = 2"],
-    "answer": "x ≠ 2"
+    "question": "Πεδίο ορισμού της: <div class='frac'><span class='top'>1</span><span class='bottom'>x - 4</span></div> = 1",
+    "options": ["x ≠ 4", "x ≠ 0", "x ≠ -4", "x = 4"],
+    "answer": "x ≠ 4"
   },
   {
     "category": "equations",
     "subcategory": "quadratic",
-    "question": "Λύση της εξίσωσης: x² - 9 = 0",
-    "options": ["3 και -3", "Μόνο το 3", "Μόνο το -3", "9 και -9"],
-    "answer": "3 και -3"
+    "question": "Λύσεις της: x² - 5x + 6 = 0",
+    "options": ["2 και 3", "-2 και -3", "1 και 6", "0 και 5"],
+    "answer": "2 και 3"
   }
 ]

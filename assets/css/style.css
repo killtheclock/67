@@ -91,3 +91,17 @@ header h1 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; lett
 
 .hidden { display: none !important; }
 .back-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 15px; width: 100%; cursor: pointer; margin-top: 15px; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; }
+
+/* Στυλ για Μαθηματικά Κλάσματα */
+.frac {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-family: "SFMono-Regular", Consolas, monospace;
+}
+.frac > span {
+    display: block;
+    padding: 0 5px;
+}
+.frac span.top { border-bottom: 2px solid var(--text-main); }
+.frac span.bottom { border-top: none; }
