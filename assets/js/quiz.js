@@ -1,30 +1,38 @@
-alert("1. Script Started");
+alert("STEP 1: Script Loaded");
 
-// Χρησιμοποιούμε var για μέγιστη συμβατότητα με παλιά κινητά
 var allQuestions = [];
 
+// Χρησιμοποιούμε το παλιό καλό onload
 window.onload = function() {
-    alert("2. Page Loaded - Fetching JSON...");
+    alert("STEP 2: Page Ready - Requesting JSON");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "data/questions/math_g_gymn.json", true);
     
-    fetch('data/questions/math_g_gymn.json')
-        .then(function(res) { 
-            return res.json(); 
-        })
-        .then(function(data) {
-            allQuestions = data;
-            alert("3. SUCCESS! Found " + data.length + " questions.");
-        })
-        .catch(function(err) {
-            alert("3. ERROR: " + err.message);
-        });
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                try {
+                    allQuestions = JSON.parse(xhr.responseText);
+                    alert("STEP 3: SUCCESS! Loaded " + allQuestions.length + " questions.");
+                } catch(e) {
+                    alert("STEP 3: JSON PARSE ERROR: " + e.message);
+                }
+            } else {
+                alert("STEP 3: HTTP ERROR! Status: " + xhr.status);
+            }
+        }
+    };
+    
+    xhr.send();
 };
 
 function startQuiz(cat, sub) {
-    alert("Attempting to start: " + sub);
+    alert("Click detected for: " + sub);
     if (allQuestions.length === 0) {
-        alert("Wait! Data not loaded yet.");
+        alert("Data not ready. Please wait 2 seconds.");
         return;
     }
-    // Εδώ θα μπει ο υπόλοιπος κώδικας αφού σιγουρευτούμε ότι δουλεύουν τα alerts
-    console.log(cat, sub);
+    // Ο κώδικας για την εμφάνιση των ερωτήσεων θα μπει εδώ 
+    // μόλις δούμε ότι το Step 3 δουλεύει.
 }
