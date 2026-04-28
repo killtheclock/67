@@ -10,9 +10,7 @@ fetch('data/questions/math_g_gymn.json')
         updateCategoryCounters();
     });
 
-function vibrate(ms) {
-    if (navigator.vibrate) navigator.vibrate(ms);
-}
+function vibrate(ms) { if (navigator.vibrate) navigator.vibrate(ms); }
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -30,12 +28,10 @@ function updateCategoryCounters() {
         if (tag) tag.innerText = count.toString().padStart(2, '0');
     });
 }
-
 function showSubcategories(catID) {
-    vibrate(25);
+    vibrate(20);
     let sub = document.querySelector(`[data-cat="${catID}"]`).getAttribute('data-sub');
     let filtered = allQuestions.filter(q => q.subcategory.trim() === sub.trim());
-    
     if (filtered.length > 0) {
         currentQuiz = shuffle([...filtered]);
         currentIndex = 0; stats = { correct: 0, total: currentQuiz.length };
@@ -49,12 +45,14 @@ function showSubcategories(catID) {
 function renderQuestion() {
     let q = currentQuiz[currentIndex];
     let fb = document.getElementById('feedback-bar');
-    fb.innerText = `[ UNIT_${(currentIndex + 1).toString().padStart(2, '0')} ]`;
-    fb.style.color = "var(--text)";
+    fb.innerText = `SESSION_LOG // UNIT ${currentIndex + 1} OF ${currentQuiz.length}`;
+    fb.style.color = "var(--text-muted)";
 
     let html = `
         <div class="quiz-card">
-            <div class="question-text">\\( ${q.question} \\)</div>
+            <div class="question-area">
+                <div class="question-text">\\( ${q.question} \\)</div>
+            </div>
             <div class="options-grid">
                 ${shuffle([...q.options]).map(opt => `
                     <button class="opt-btn" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\")}')">
@@ -62,48 +60,51 @@ function renderQuestion() {
                     </button>
                 `).join('')}
             </div>
+            <div class="controls-area">
+                <div id="progress-container"><div id="progress-bar"></div></div>
+                <button id="abort-btn" onclick="goHome()">[ ABORT_TEST ]</button>
+            </div>
         </div>`;
-    
     document.getElementById('card-stack').innerHTML = html;
-    document.getElementById('progress-bar').style.width = ((currentIndex / currentQuiz.length) * 100) + "%";
+    updateProgressBar();
     if (window.MathJax) MathJax.typesetPromise();
 }
-
 function checkAnswer(btn, selected, correct) {
     document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
     let fb = document.getElementById('feedback-bar');
-
     if (selected === correct) {
-        vibrate([30, 30, 30]);
-        fb.innerText = "STATUS: SUCCESS"; fb.style.color = "var(--accent)";
+        vibrate([20, 20]);
+        fb.innerText = "VERIFIED: CORRECT"; fb.style.color = "var(--accent)";
         stats.correct++;
+        btn.style.borderColor = "var(--accent)";
         btn.style.color = "var(--accent)";
     } else {
-        vibrate(150);
-        fb.innerText = "STATUS: FAIL"; fb.style.color = "#ff4444";
-        btn.style.color = "#ff4444";
+        vibrate(100);
+        fb.innerText = "VERIFIED: ERROR"; fb.style.color = "#ff5252";
+        btn.style.borderColor = "#ff5252";
+        btn.style.color = "#ff5252";
     }
-
     setTimeout(() => {
         currentIndex++;
         if (currentIndex < currentQuiz.length) renderQuestion();
         else showFinalStats();
-    }, 900);
+    }, 800);
+}
+
+function updateProgressBar() {
+    let bar = document.getElementById('progress-bar');
+    if (bar) bar.style.width = ((currentIndex / currentQuiz.length) * 100) + "%";
 }
 
 function showFinalStats() {
     let score = Math.round((stats.correct / stats.total) * 100);
     document.getElementById('quiz-container').innerHTML = `
         <div class="stats-screen">
-            <p style="letter-spacing: 2px;">PERFORMANCE_REPORT</p>
+            <p style="color:var(--text-muted)">FINAL_RESULT</p>
             <h1>${score}%</h1>
-            <p>CORRECT_UNITS: ${stats.correct}/${stats.total}</p>
-            <button onclick="location.reload()" class="stats-btn">[ RETURN_TO_MENU ]</button>
+            <p style="color:var(--accent)">SUCCESSFUL_UNITS: ${stats.correct}/${stats.total}</p>
+            <button onclick="location.reload()" class="stats-btn">[ BACK_TO_MENU ]</button>
         </div>
     `;
 }
-
-function goHome() { 
-    vibrate(30);
-    window.location.reload(); 
-}
+function goHome() { window.location.reload(); }
