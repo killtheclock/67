@@ -2,88 +2,38 @@
     --bg: #000000;
     --text: #ffffff;
     --accent: #ff0000;
-    --border: #333333;
+    --border: #222222;
     --font-mono: 'Courier New', Courier, monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; background: var(--bg); color: var(--text); }
 
-body {
-    font-family: var(--font-mono);
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-}
+body { font-family: var(--font-mono); width: 100vw; height: 100vh; overflow: hidden; }
 
-/* Header */
-header {
-    border-bottom: 2px solid var(--border);
-    padding: 15px;
-    text-align: center;
-}
+header { border-bottom: 2px solid var(--border); padding: 20px; text-align: center; }
 
-h1 { font-size: 1.2rem; letter-spacing: -1px; text-transform: uppercase; }
+.category-card { border-bottom: 1px solid var(--border); padding: 30px 20px; position: relative; }
+.category-card h3 { color: var(--accent); font-size: 1.6rem; }
+.count-tag { position: absolute; right: 20px; top: 35px; border: 1px solid var(--text); padding: 4px 10px; font-weight: bold; }
 
-/* Categories List */
-#category-selector { display: flex; flex-direction: column; width: 100%; }
+#quiz-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; flex-direction: column; }
+#progress-bar { height: 6px; background: var(--accent); width: 0%; }
+#feedback-bar { padding: 20px; border-bottom: 1px solid var(--border); text-align: center; font-weight: bold; font-size: 1.2rem; }
 
-.category-card {
-    border-bottom: 1px solid var(--border);
-    padding: 25px 15px;
-    position: relative;
-    cursor: pointer;
-}
-
-.category-card h3 { color: var(--accent); font-size: 1.5rem; margin-bottom: 5px; background: transparent; }
-.category-card p { font-size: 0.9rem; opacity: 0.6; background: transparent; }
-
-.count-tag {
-    position: absolute; right: 15px; top: 25px;
-    border: 1px solid var(--text);
-    padding: 2px 8px;
-    font-weight: bold;
-}
-
-/* Quiz UI - Full Screen Replacement */
-#quiz-container {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: 1000; display: flex; flex-direction: column;
-}
-
-#feedback-bar {
-    padding: 15px; border-bottom: 2px solid var(--accent);
-    text-align: center; font-weight: bold; font-size: 1.1rem;
-}
-
-#progress-bar { height: 4px; background: var(--accent); width: 0%; transition: 0.3s; }
-
-.quiz-card { flex: 1; display: flex; flex-direction: column; padding: 20px 0; }
-
-.question-text {
-    padding: 40px 10px; font-size: 1.6rem; text-align: center;
-    border-bottom: 1px solid var(--border);
-}
-
+.quiz-card { flex: 1; display: flex; flex-direction: column; }
+.question-text { padding: 50px 15px; font-size: 1.8rem; text-align: center; border-bottom: 1px solid var(--border); }
 .options-grid { display: flex; flex-direction: column; flex: 1; }
+.opt-btn { flex: 1; border: none; border-bottom: 1px solid var(--border); font-size: 1.4rem; font-weight: bold; }
+.opt-btn:active { background: #fff !important; color: #000 !important; }
 
-.opt-btn {
-    flex: 1; border: none; border-bottom: 1px solid var(--border);
-    font-size: 1.2rem; font-weight: bold; text-align: center;
-    padding: 20px; transition: 0.1s;
+#abort-btn { 
+    position: absolute; bottom: 0; width: 100%; padding: 25px; 
+    border: none; border-top: 2px solid var(--accent); 
+    color: var(--accent); font-weight: bold; font-size: 1.1rem;
+    text-transform: uppercase;
 }
 
-.opt-btn:active { background: var(--text) !important; color: var(--bg) !important; }
-
-/* Stats Screen */
-.stats-screen {
-    display: flex; flex-direction: column; justify-content: center;
-    align-items: center; height: 100%; text-align: center;
-}
-
-.stats-screen h1 { font-size: 4rem; color: var(--accent); }
-
-/* MathJax Dark Fix */
-.mjx-chtml { color: white !important; }
-.MathJax { font-size: 120% !important; }
+.stats-screen { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.stats-screen h1 { font-size: 5rem; color: var(--accent); margin: 20px 0; }
 
 .hidden { display: none !important; }
