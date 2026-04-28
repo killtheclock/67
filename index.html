@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math OS v2.4</title>
-    <link rel="stylesheet" href="assets/css/style.css?v=2.5">
+    <title>Math OS v2.9</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=2.9">
 </head>
 <body>
     <div id="progress-container"><div id="progress-bar"></div></div>
@@ -14,17 +14,25 @@
     </header>
 
     <main id="category-selector">
-        <div class="category-card" onclick="showSubcategories('factorization')">
-            <h3>FACTORIZATION</h3>
-            <p>DATA_SET_01</p>
+        <div class="category-card" onclick="showSubcategories('algebra_basics')">
+            <h3>ALGEBRA_BASICS</h3>
+            <p>DATA_SET_01 // Πράξεις</p>
         </div>
         <div class="category-card" onclick="showSubcategories('identities')">
             <h3>IDENTITIES</h3>
-            <p>DATA_SET_02</p>
+            <p>DATA_SET_02 // Ταυτότητες</p>
+        </div>
+        <div class="category-card" onclick="showSubcategories('factorization')">
+            <h3>FACTORIZATION</h3>
+            <p>DATA_SET_03 // Παραγοντοποίηση</p>
         </div>
         <div class="category-card" onclick="showSubcategories('equations')">
             <h3>EQUATIONS</h3>
-            <p>DATA_SET_03</p>
+            <p>DATA_SET_04 // Εξισώσεις</p>
+        </div>
+        <div class="category-card" onclick="showSubcategories('inequalities')">
+            <h3>INEQUALITIES</h3>
+            <p>DATA_SET_05 // Ανισώσεις</p>
         </div>
     </main>
 
@@ -34,6 +42,6 @@
         <div id="card-stack"></div>
     </section>
 
-    <script src="assets/js/quiz.js?v=2.5"></script>
+    <script src="assets/js/quiz.js?v=2.9"></script>
 </body>
 </html>

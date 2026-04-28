@@ -1,37 +1,65 @@
 [
   {
-    "category": "factorization",
-    "subcategory": "common_factor",
-    "question": "Παραγοντοποιήστε: 5x + 5y",
-    "options": ["5(x+y)", "5xy", "5x+y", "x(5+y)"],
-    "answer": "5(x+y)"
+    "category": "algebra_basics",
+    "subcategory": "monomials",
+    "question": "Πράξη: 3x² · 4x³",
+    "options": ["12x⁵", "7x⁵", "12x⁶", "7x⁶"],
+    "answer": "12x⁵"
+  },
+  {
+    "category": "algebra_basics",
+    "subcategory": "polynomials",
+    "question": "Βαθμός του πολυωνύμου: x³ + 5x² - 1",
+    "options": ["3", "2", "5", "1"],
+    "answer": "3"
+  },
+  {
+    "category": "identities",
+    "subcategory": "square_sum",
+    "question": "Ανάπτυγμα: (x + 4)²",
+    "options": ["x² + 8x + 16", "x² + 16", "x² + 4x + 16", "x² + 8x + 8"],
+    "answer": "x² + 8x + 16"
+  },
+  {
+    "category": "identities",
+    "subcategory": "diff_squares",
+    "question": "Ανάπτυγμα: (x - 3)(x + 3)",
+    "options": ["x² - 9", "x² + 9", "x² - 6", "x - 9"],
+    "answer": "x² - 9"
   },
   {
     "category": "factorization",
     "subcategory": "common_factor",
-    "question": "Παραγοντοποιήστε: 2α² - 4α",
-    "options": ["2α(α-2)", "2α(α-4)", "4α(α-1)", "2(α²-4)"],
-    "answer": "2α(α-2)"
+    "question": "Παραγοντοποιήστε: 7x + 7y",
+    "options": ["7(x + y)", "7xy", "x(7 + y)", "7x + y"],
+    "answer": "7(x + y)"
   },
   {
-    "category": "equations",
-    "subcategory": "fractional",
-    "question": "Λύστε την εξίσωση: <div class='frac'><span class='top'>x</span><span class='bottom'>2</span></div> = 4",
-    "options": ["x = 8", "x = 2", "x = 6", "x = 4"],
-    "answer": "x = 8"
-  },
-  {
-    "category": "equations",
-    "subcategory": "fractional",
-    "question": "Πεδίο ορισμού της: <div class='frac'><span class='top'>1</span><span class='bottom'>x - 4</span></div> = 1",
-    "options": ["x ≠ 4", "x ≠ 0", "x ≠ -4", "x = 4"],
-    "answer": "x ≠ 4"
+    "category": "factorization",
+    "subcategory": "grouping",
+    "question": "Παραγοντοποιήστε: ax + ay + bx + by",
+    "options": ["(a + b)(x + y)", "(a + x)(b + y)", "(ax + by)", "a(x + y) + b"],
+    "answer": "(a + b)(x + y)"
   },
   {
     "category": "equations",
     "subcategory": "quadratic",
-    "question": "Λύσεις της: x² - 5x + 6 = 0",
-    "options": ["2 και 3", "-2 και -3", "1 και 6", "0 και 5"],
-    "answer": "2 και 3"
+    "question": "Λύσεις της: x² - 7x + 10 = 0",
+    "options": ["2 και 5", "-2 και -5", "1 και 10", "0 και 7"],
+    "answer": "2 και 5"
+  },
+  {
+    "category": "equations",
+    "subcategory": "fractional",
+    "question": "Λύστε την: <div class='frac'><span class='top'>12</span><span class='bottom'>x</span></div> = 3",
+    "options": ["x = 4", "x = 3", "x = 36", "x = 9"],
+    "answer": "x = 4"
+  },
+  {
+    "category": "inequalities",
+    "subcategory": "first_degree",
+    "question": "Λύση της: 2x > 10",
+    "options": ["x > 5", "x < 5", "x > 20", "x = 5"],
+    "answer": "x > 5"
   }
 ]
