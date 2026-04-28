@@ -1,101 +1,95 @@
 :root {
-    --bg: #f0f4f8;
-    --primary: #4a90e2;
-    --dark: #2c3e50;
-    --white: #ffffff;
-    --success: #2ecc71;
-    --error: #e74c3c;
+    --main-bg: #1a1e34;
+    --card-bg: #27293d;
+    --accent: #e14eca; /* Pink gradient like the image */
+    --text: #ffffff;
+    --text-muted: #9a9a9a;
+    --border: rgba(255, 255, 255, 0.1);
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--bg);
+    font-family: 'Poppins', sans-serif;
+    background: var(--main-bg);
+    color: var(--text);
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--dark);
+    min-height: 100vh;
 }
 
-header { text-align: center; padding: 30px 20px; }
+header { padding: 40px; text-align: center; }
+header h1 { margin: 0; font-weight: 300; letter-spacing: 2px; }
 
 #category-selector {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
     width: 90%;
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .category-card {
-    background: var(--white);
-    border: 2px solid var(--dark); /* Πιο λεπτό border */
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: left;
     cursor: pointer;
-    box-shadow: 4px 4px 0px var(--dark); /* Μικρότερο shadow */
-    transition: 0.2s;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
 }
 
-.category-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--primary);
-}
-
-.exercise-count {
-    background: var(--primary);
-    color: white;
-    font-size: 0.8rem;
-    padding: 2px 8px;
-    border-radius: 20px;
+.category-card::before {
+    content: '';
     position: absolute;
-    top: 10px;
-    right: 10px;
+    left: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(to bottom, #f06, #4a90e2);
 }
+
+.category-card:hover { transform: translateY(-5px); background: #2b2e4a; }
+
+.exercise-count { color: var(--accent); font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
 
 .hidden { display: none; }
 
-/* Στυλ για τις ερωτήσεις */
+/* Quiz Cards Style */
 .quiz-card {
-    background: white;
-    border: 2px solid var(--dark);
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 4px 4px 0px var(--dark);
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 30px;
     width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+    border: 1px solid var(--border);
 }
 
 .options-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
 }
 
 .opt-btn {
-    padding: 10px;
-    border: 2px solid var(--dark);
-    background: white;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 12px;
+    border-radius: 30px;
     cursor: pointer;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
-.opt-btn:hover {
-    background: #f8f9fa;
-}
+.opt-btn:hover { background: var(--accent); }
 
 .back-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--text-muted);
+    padding: 8px 20px;
+    border-radius: 20px;
     cursor: pointer;
-    background: var(--dark);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
+    margin-top: 30px;
 }

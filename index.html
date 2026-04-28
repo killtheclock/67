@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Quiz - Γ' Γυμνασίου</title>
+    <title>Math Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <h1>Math Master <small>Γ' Γυμνασίου</small></h1>
-        <p>Επίλεξε ενότητα</p>
+        <h1>DASHBOARD <span style="font-weight:600; color:var(--accent);">MATH</span></h1>
     </header>
 
     <main id="category-selector">
         <div class="category-card" onclick="loadQuiz('factorization')">
-            <span class="exercise-count">0 ασκήσεις</span>
-            <div class="icon">^</div>
-            <h2>Παραγοντοποίηση</h2>
+            <div class="exercise-count" data-cat="factorization">Loading...</div>
+            <h3 style="margin: 10px 0;">Παραγοντοποίηση</h3>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Ασκήσεις με κοινό παράγοντα και ταυτότητες.</p>
         </div>
+        
         <div class="category-card" onclick="loadQuiz('identities')">
-            <span class="exercise-count">0 ασκήσεις</span>
-            <div class="icon">ab</div>
-            <h2>Ταυτότητες</h2>
+            <div class="exercise-count" data-cat="identities">Loading...</div>
+            <h3 style="margin: 10px 0;">Ταυτότητες</h3>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Ανάπτυγμα τετραγώνου και διαφορά τετραγώνων.</p>
         </div>
     </main>
 
     <section id="quiz-container" class="hidden">
         <div id="card-stack"></div>
-        <center><button class="back-btn" onclick="window.location.reload()">Πίσω στις Ενότητες</button></center>
-        <br>
+        <button class="back-btn" onclick="window.location.reload()">← BACK TO DASHBOARD</button>
     </section>
 
     <script src="assets/js/quiz.js"></script>

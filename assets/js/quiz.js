@@ -1,22 +1,23 @@
 let allQuestions = [];
 
-// Φόρτωση δεδομένων και αρχικοποίηση
 async function init() {
     try {
         const response = await fetch('data/questions/math_g_gymn.json');
+        if (!response.ok) throw new Error('Network error');
         allQuestions = await response.json();
+        console.log("Loaded questions:", allQuestions.length);
         updateCounts();
     } catch (e) {
-        console.error("Failed to load questions");
+        console.error("Error:", e);
     }
 }
 
 function updateCounts() {
-    const categories = ['factorization', 'identities'];
-    categories.forEach(cat => {
+    const badges = document.querySelectorAll('.exercise-count');
+    badges.forEach(badge => {
+        const cat = badge.getAttribute('data-cat');
         const count = allQuestions.filter(q => q.category === cat).length;
-        const badge = document.querySelector(`.category-card[onclick*="${cat}"] .exercise-count`);
-        if (badge) badge.innerText = `${count} ασκήσεις`;
+        badge.innerText = `${count} ΑΣΚΗΣΕΙΣ`;
     });
 }
 
@@ -32,9 +33,8 @@ function loadQuiz(category) {
     
     stack.innerHTML = filtered.map(q => `
         <div class="quiz-card">
-            <small>ID: #${q.id}</small>
-            <p style="font-size: 1.2rem; font-weight: bold;">${q.question}</p>
-            ${q.image ? `<img src="${q.image}" style="max-width:100%; margin-bottom:10px;">` : ''}
+            <p style="color: var(--text-muted); font-size: 0.8rem;">ΕΝΟΤΗΤΑ: ${category.toUpperCase()}</p>
+            <h2 style="font-weight: 400; margin-bottom: 25px;">${q.question}</h2>
             <div class="options-grid">
                 ${q.options.map(opt => `
                     <button class="opt-btn" onclick="checkAnswer(this, '${q.answer}', '${opt}')">${opt}</button>
@@ -45,20 +45,15 @@ function loadQuiz(category) {
 }
 
 function checkAnswer(btn, correct, selected) {
-    const parent = btn.parentElement;
-    const buttons = parent.querySelectorAll('.opt-btn');
-    
-    buttons.forEach(b => b.style.pointerEvents = 'none'); // Κλείδωμα κουμπιών
-
     if (selected === correct) {
-        btn.style.backgroundColor = 'var(--success)';
-        btn.style.color = 'white';
-        btn.style.borderColor = 'var(--success)';
+        btn.style.background = "#2ecc71";
+        btn.style.borderColor = "#2ecc71";
     } else {
-        btn.style.backgroundColor = 'var(--error)';
-        btn.style.color = 'white';
-        btn.style.borderColor = 'var(--error)';
+        btn.style.background = "#e74c3c";
+        btn.style.borderColor = "#e74c3c";
     }
+    const btns = btn.parentElement.querySelectorAll('.opt-btn');
+    btns.forEach(b => b.style.pointerEvents = 'none');
 }
 
 window.onload = init;
