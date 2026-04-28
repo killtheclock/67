@@ -16,14 +16,36 @@ async function init() {
     try {
         const res = await fetch('data/questions/math_g_gymn.json');
         allQuestions = await res.json();
-        console.log("System initialized. Data loaded.");
+        console.log("System initialized.");
+        updateMainPageCounters(); // Υπολογισμός συνόλων για την αρχική
     } catch (e) { 
         console.error("JSON Load Error", e); 
     }
 }
 
-function getCount(cat, sub) {
-    return allQuestions.filter(q => q.category === cat && q.subcategory === sub).length;
+function getCount(cat, sub = null) {
+    if (sub) {
+        return allQuestions.filter(q => q.category === cat && q.subcategory === sub).length;
+    }
+    return allQuestions.filter(q => q.category === cat).length;
+}
+
+function updateMainPageCounters() {
+    const categories = ['ops', 'identities', 'factorization', 'rational', 'equations', 'inequalities', 'systems', 'geometry', 'trigonometry'];
+    categories.forEach(cat => {
+        const count = getCount(cat);
+        const card = document.querySelector(`div[onclick*="'${cat}'"]`);
+        if (card) {
+            // Ψάχνουμε αν υπάρχει ήδη το span, αλλιώς το φτιάχνουμε
+            let countSpan = card.querySelector('.total-count');
+            if (!countSpan) {
+                countSpan = document.createElement('span');
+                countSpan.className = 'total-count';
+                card.appendChild(countSpan);
+            }
+            countSpan.innerText = `TOTAL_EXERCISES // ${count}`;
+        }
+    });
 }
 
 function showSubcategories(category) {
