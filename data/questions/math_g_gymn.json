@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "category": "factorization",
+    "question": "Παραγοντοποιήστε την παράσταση: 3x + 3y",
+    "options": ["3(x+y)", "3xy", "x(3+y)"],
+    "answer": "3(x+y)"
+  },
+  {
+    "id": 2,
+    "category": "identities",
+    "question": "Ανάπτυγμα του (α+β)²",
+    "options": ["α²+β²", "α²+2αβ+β²", "α²-2αβ+β²"],
+    "answer": "α²+2αβ+β²"
+  }
+]
