@@ -1,14 +1,12 @@
 [
   {
-    "id": 1,
     "category": "factorization",
     "subcategory": "common_factor",
-    "question": "Παραγοντοποιήστε (Κοινός Παράγοντας): 5x + 5y",
-    "options": ["5(x+y)", "5xy", "x(5+y)", "5x+y"],
+    "question": "Παραγοντοποιήστε: 5x + 5y",
+    "options": ["5(x+y)", "5xy", "5x+y", "x(5+y)"],
     "answer": "5(x+y)"
   },
   {
-    "id": 2,
     "category": "factorization",
     "subcategory": "common_factor",
     "question": "Παραγοντοποιήστε: 2α² - 4α",
@@ -16,27 +14,38 @@
     "answer": "2α(α-2)"
   },
   {
-    "id": 3,
-    "category": "factorization",
-    "subcategory": "grouping",
-    "question": "Ομαδοποίηση: αx + αy + βx + βy",
-    "options": ["(α+β)(x+y)", "(α+x)(β+y)", "αβ(x+y)", "x(α+β)+y"],
-    "answer": "(α+β)(x+y)"
-  },
-  {
-    "id": 4,
-    "category": "factorization",
-    "subcategory": "grouping",
-    "question": "Ομαδοποίηση: x² + x + αx + α",
-    "options": ["(x+1)(x+α)", "(x+α)x", "x(x+1+α)", "(x²+α)(x+1)"],
-    "answer": "(x+1)(x+α)"
-  },
-  {
-    "id": 5,
     "category": "identities",
-    "subcategory": "square",
-    "question": "Ταυτότητα: (x+3)²",
-    "options": ["x²+6x+9", "x²+9", "x²+3x+9", "2x+6"],
-    "answer": "x²+6x+9"
+    "subcategory": "square_sum",
+    "question": "Ανάπτυγμα: (x + 3)²",
+    "options": ["x² + 6x + 9", "x² + 9", "x² + 3x + 9", "2x + 6"],
+    "answer": "x² + 6x + 9"
+  },
+  {
+    "category": "equations",
+    "subcategory": "quadratic",
+    "question": "Λύσεις της εξίσωσης: x² - 5x + 6 = 0",
+    "options": ["2 και 3", "-2 και -3", "1 και 6", "0 και 5"],
+    "answer": "2 και 3"
+  },
+  {
+    "category": "equations",
+    "subcategory": "quadratic",
+    "question": "Πόσες λύσεις έχει η εξίσωση αν Δ > 0;",
+    "options": ["Δύο άνισες", "Μία διπλή", "Καμία (Αδύνατη)", "Άπειρες"],
+    "answer": "Δύο άνισες"
+  },
+  {
+    "category": "equations",
+    "subcategory": "fractional",
+    "question": "Περιορισμός για την: 1 / (x - 2) = 5",
+    "options": ["x ≠ 2", "x ≠ 0", "x ≠ -2", "x = 2"],
+    "answer": "x ≠ 2"
+  },
+  {
+    "category": "equations",
+    "subcategory": "quadratic",
+    "question": "Λύση της εξίσωσης: x² - 9 = 0",
+    "options": ["3 και -3", "Μόνο το 3", "Μόνο το -3", "9 και -9"],
+    "answer": "3 και -3"
   }
 ]

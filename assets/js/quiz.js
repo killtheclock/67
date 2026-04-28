@@ -22,7 +22,10 @@ function showSubcategories(category) {
     document.getElementById('category-selector').classList.add('hidden');
     const subSelector = document.getElementById('subcategory-selector');
     subSelector.classList.remove('hidden');
-    let subs = category === 'factorization' ? 
+    let subs = [];
+    if (category === 'factorization') subs = [{id:'common_factor', name:'Κοινός Παράγοντας'}, {id:'grouping', name:'Ομαδοποίηση'}];
+    else if (category === 'identities') subs = [{id:'square_sum', name:'Τετράγωνο Αθροίσματος'}, {id:'diff_squares', name:'Διαφορά Τετραγώνων'}];
+    else if (category === 'equations') subs = [{id:'quadratic', name:'Δευτεροβάθμιες'}, {id:'fractional', name:'Κλασματικές'}];
         [{id:'common_factor', name:'Κοινός Παράγοντας'}, {id:'grouping', name:'Ομαδοποίηση'}] : 
         [{id:'square', name:'Ταυτότητες'}];
     
