@@ -3,6 +3,15 @@ let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
 
+// Συνάρτηση Ανακατέματος (Fisher-Yates Shuffle)
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 async function init() {
     try {
         const res = await fetch('data/questions/math_g_gymn.json');
@@ -32,7 +41,10 @@ function showSubcategories(category) {
 function startQuiz(cat, sub) {
     document.getElementById('subcategory-selector').classList.add('hidden');
     document.getElementById('quiz-container').classList.remove('hidden');
-    currentQuiz = allQuestions.filter(q => q.category === cat && q.subcategory === sub);
+    
+    // Φιλτράρισμα και μετά ΑΝΑΚΑΤΕΜΑ των ερωτήσεων
+    currentQuiz = shuffle(allQuestions.filter(q => q.category === cat && q.subcategory === sub));
+    
     currentIndex = 0;
     score = 0;
     showQuestion();
@@ -52,7 +64,9 @@ function showQuestion() {
 
     const q = currentQuiz[currentIndex];
     
-    // Έξυπνος διαχωρισμός εντολής και παράστασης (ψάχνει για την άνω-κάτω τελεία)
+    // ΑΝΑΚΑΤΕΜΑ και των επιλογών για να μην είναι πάντα η σωστή στην ίδια θέση
+    const shuffledOptions = shuffle([...q.options]);
+
     let parts = q.question.split(':');
     let instruction = parts[0] ? parts[0].trim() + ':' : 'Άσκηση:';
     let expression = parts[1] ? parts[1].trim() : q.question;
@@ -63,7 +77,7 @@ function showQuestion() {
             <div class="question-text">${instruction}</div>
             <div class="math-expression">${expression}</div>
             <div class="options-grid">
-                ${q.options.map(opt => `
+                ${shuffledOptions.map(opt => `
                     <button class="opt-btn" onclick="handleAnswer(this, '${opt}', '${q.answer}')">${opt}</button>
                 `).join('')}
             </div>
