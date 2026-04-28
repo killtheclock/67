@@ -1,6 +1,8 @@
 let allQuestions = [];
 let currentQuiz = [];
 let currentIndex = 0;
+let score = 0;
+let startTime;
 
 async function init() {
     try {
@@ -55,34 +57,75 @@ function startQuiz(cat, sub) {
     document.getElementById('quiz-container').classList.remove('hidden');
     currentQuiz = allQuestions.filter(q => q.category === cat && q.subcategory === sub);
     currentIndex = 0;
+    score = 0;
+    startTime = Date.now();
     showQuestion();
 }
 
 function showQuestion() {
     const stack = document.getElementById('card-stack');
     if(currentIndex >= currentQuiz.length) {
-        stack.innerHTML = `<div class="quiz-card"><h2>COMPLETE</h2><button class="back-btn" onclick="location.reload()">RESTART</button></div>`;
+        showFinalStats();
         return;
     }
     const q = currentQuiz[currentIndex];
     stack.innerHTML = `
         <div class="quiz-card">
             <p style="font-size:0.7rem; color:#4ade80;">SIGNAL_STABLE // EXERCISE ${currentIndex + 1}/${currentQuiz.length}</p>
-            <div class="math-expression" style="font-size:1.5rem; margin:20px 0;">$${q.question}$</div>
+            <div class="math-expression" id="math-q" style="font-size:1.4rem; margin:20px 0;">\\(${q.question}\\)</div>
             <div class="options-grid">
-                ${q.options.map(opt => `<button class="opt-btn" onclick="handleAnswer('${opt}', '${q.answer}')">$${opt}$</button>`).join('')}
+                ${q.options.map(opt => `<button class="opt-btn" onclick="handleAnswer(this, '${opt}', '${q.answer}')">\\(${opt}\\)</button>`).join('')}
             </div>
         </div>`;
-    if (window.MathJax) MathJax.typeset();
+    
+    if (window.MathJax) {
+        MathJax.typesetPromise([stack]);
+    }
 }
 
-function handleAnswer(sel, cor) {
-    if(sel === cor) {
-        currentIndex++;
-        showQuestion();
+function handleAnswer(btn, selected, correct) {
+    const allBtns = btn.parentElement.querySelectorAll('.opt-btn');
+    allBtns.forEach(b => b.style.pointerEvents = 'none');
+
+    if(selected === correct) {
+        btn.classList.add('correct');
+        score++;
     } else {
-        alert('ACCESS_DENIED: WRONG_ANSWER');
+        btn.classList.add('incorrect');
+        allBtns.forEach(b => {
+            // Χρησιμοποιούμε μια απλή σύγκριση κειμένου για την αποκάλυψη του σωστού
+            if(b.innerHTML.includes(correct)) b.classList.add('correct-reveal');
+        });
     }
+
+    currentIndex++;
+    setTimeout(showQuestion, 1200);
+}
+
+function showFinalStats() {
+    const stack = document.getElementById('card-stack');
+    const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+    const accuracy = ((score / currentQuiz.length) * 100).toFixed(0);
+    
+    stack.innerHTML = `
+        <div class="quiz-card">
+            <h2 style="color:#4ade80;">MISSION_COMPLETE</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0; text-align:left;">
+                <div style="border:1px solid #333; padding:10px;">
+                    <div style="font-size:0.7rem; color:#888;">SCORE</div>
+                    <div style="font-size:1.2rem;">${score}/${currentQuiz.length}</div>
+                </div>
+                <div style="border:1px solid #333; padding:10px;">
+                    <div style="font-size:0.7rem; color:#888;">ACCURACY</div>
+                    <div style="font-size:1.2rem;">${accuracy}%</div>
+                </div>
+                <div style="border:1px solid #333; padding:10px; grid-column: span 2;">
+                    <div style="font-size:0.7rem; color:#888;">TIME_ELAPSED</div>
+                    <div style="font-size:1.2rem;">${totalTime}s</div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="location.reload()">REBOOT_SYSTEM</button>
+        </div>`;
 }
 
 window.onload = init;

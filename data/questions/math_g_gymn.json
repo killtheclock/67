@@ -1,19 +1,5 @@
 [
   {
-    "category": "rational",
-    "subcategory": "simplification",
-    "question": "\\frac{x^2 - 7x + 12}{x^2 - 16}",
-    "options": ["\\frac{x-3}{x+4}", "\\frac{x+3}{x-4}", "1", "\\frac{x-4}{x+4}"],
-    "answer": "\\frac{x-3}{x+4}"
-  },
-  {
-    "category": "rational",
-    "subcategory": "rational_ops",
-    "question": "\\frac{x}{x-1} - \\frac{2}{x^2-1} = \\frac{x+2}{x+1}",
-    "options": ["True", "False"],
-    "answer": "True"
-  },
-  {
     "category": "factorization",
     "subcategory": "trinomial",
     "question": "x^2 + (\\sqrt{3}+\\sqrt{2})x + \\sqrt{6}",
@@ -21,10 +7,10 @@
     "answer": "(x+\\sqrt{3})(x+\\sqrt{2})"
   },
   {
-    "category": "equations",
-    "subcategory": "quad_formula",
-    "question": "2x^2 - 5x + 3 = 0",
-    "options": ["x=1, x=1.5", "x=-1, x=-1.5", "x=0", "Αδύνατη"],
-    "answer": "x=1, x=1.5"
+    "category": "rational",
+    "subcategory": "simplification",
+    "question": "\\frac{x^2 - 7x + 12}{x^2 - 16}",
+    "options": ["\\frac{x-3}{x+4}", "\\frac{x+3}{x-4}", "1", "\\frac{x-4}{x+4}"],
+    "answer": "\\frac{x-3}{x+4}"
   }
 ]
