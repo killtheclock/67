@@ -2,30 +2,36 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math OS v4.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Math OS v4.1</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <div id="progress-container"><div id="progress-bar"></div></div>
     <header>
-        <h1>SYSTEM_LOG // <span style="color:var(--text-muted)">MATH_G_GYMN_ULTIMATE</span></h1>
+        <h1>SYSTEM_LOG // MATH_G_GYMN_ULTIMATE</h1>
+        <div id="progress-container" class="hidden"><div id="progress-bar"></div></div>
     </header>
+    
     <main id="category-selector">
-        <div class="category-card" data-cat="ops" data-sub="rational_ops" onclick="showSubcategories('ops')"><h3>OPERATIONS</h3><p>SET_01 // Πράξεις</p></div>
-        <div class="category-card" data-cat="identities" data-sub="sq_sum" onclick="showSubcategories('identities')"><h3>IDENTITIES</h3><p>SET_02 // Ταυτότητες</p></div>
-        <div class="category-card" data-cat="factorization" data-sub="comm_fact" onclick="showSubcategories('factorization')"><h3>FACTORIZATION</h3><p>SET_03 // Παραγοντοποίηση</p></div>
-        <div class="category-card" data-cat="rational" data-sub="simplification" onclick="showSubcategories('rational')"><h3>RATIONAL</h3><p>SET_04 // Ρητές</p></div>
-        <div class="category-card" data-cat="equations" data-sub="quad_formula" onclick="showSubcategories('equations')"><h3>EQUATIONS</h3><p>SET_05 // Εξισώσεις</p></div>
-        <div class="category-card" data-cat="inequalities" data-sub="fractional_eq" onclick="showSubcategories('inequalities')"><h3>INEQUALITIES</h3><p>SET_06 // Ανισώσεις</p></div>
-        <div class="category-card" data-cat="systems" data-sub="substitution" onclick="showSubcategories('systems')"><h3>SYSTEMS</h3><p>SET_07 // Συστήματα</p></div>
-        <div class="category-card" data-cat="geometry" data-sub="trinomial" onclick="showSubcategories('geometry')"><h3>GEOMETRY</h3><p>SET_08 // Γεωμετρία</p></div>
-        <div class="category-card" data-cat="trigonometry" data-sub="trig_identities" onclick="showSubcategories('trigonometry')"><h3>TRIGONOMETRY</h3><p>SET_09 // Τριγωνομετρία</p></div>
+        <div class="category-card" data-cat="ops" data-sub="rational_ops" onclick="showSubcategories('ops')"><span class="count-tag">[..]</span><h3>OPERATIONS</h3><p>SET_01 // Πράξεις</p></div>
+        <div class="category-card" data-cat="identities" data-sub="sq_sum" onclick="showSubcategories('identities')"><span class="count-tag">[..]</span><h3>IDENTITIES</h3><p>SET_02 // Ταυτότητες</p></div>
+        <div class="category-card" data-cat="factorization" data-sub="comm_fact" onclick="showSubcategories('factorization')"><span class="count-tag">[..]</span><h3>FACTORIZATION</h3><p>SET_03 // Παραγοντοποίηση</p></div>
+        <div class="category-card" data-cat="rational" data-sub="simplification" onclick="showSubcategories('rational')"><span class="count-tag">[..]</span><h3>RATIONAL</h3><p>SET_04 // Ρητές</p></div>
+        <div class="category-card" data-cat="equations" data-sub="quad_formula" onclick="showSubcategories('equations')"><span class="count-tag">[..]</span><h3>EQUATIONS</h3><p>SET_05 // Εξισώσεις</p></div>
+        <div class="category-card" data-cat="inequalities" data-sub="fractional_eq" onclick="showSubcategories('inequalities')"><span class="count-tag">[..]</span><h3>INEQUALITIES</h3><p>SET_06 // Ανισώσεις</p></div>
+        <div class="category-card" data-cat="systems" data-sub="substitution" onclick="showSubcategories('systems')"><span class="count-tag">[..]</span><h3>SYSTEMS</h3><p>SET_07 // Συστήματα</p></div>
+        <div class="category-card" data-cat="geometry" data-sub="trinomial" onclick="showSubcategories('geometry')"><span class="count-tag">[..]</span><h3>GEOMETRY</h3><p>SET_08 // Γεωμετρία</p></div>
+        <div class="category-card" data-cat="trigonometry" data-sub="trig_identities" onclick="showSubcategories('trigonometry')"><span class="count-tag">[..]</span><h3>TRIGONOMETRY</h3><p>SET_09 // Τριγωνομετρία</p></div>
     </main>
-    <div id="subcategory-selector" class="hidden"></div>
-    <section id="quiz-container" class="hidden"><div id="card-stack"></div></section>
-    <script src="assets/js/quiz.js?v=5.0"></script>
+
+    <section id="quiz-container" class="hidden">
+        <div id="feedback-bar">SELECT ANSWER</div>
+        <div id="card-stack"></div>
+        <button onclick="goHome()" class="nav-btn">[ ABORT_TEST ]</button>
+    </section>
+
+    <script src="assets/js/quiz.js?v= Brutalist_4.1"></script>
 </body>
 </html>
