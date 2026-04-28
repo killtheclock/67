@@ -4,8 +4,10 @@ let currentIndex = 0;
 let score = 0;
 
 async function init() {
-    const res = await fetch('data/questions/math_g_gymn.json');
-    allQuestions = await res.json();
+    try {
+        const res = await fetch('data/questions/math_g_gymn.json');
+        allQuestions = await res.json();
+    } catch (e) { console.error("Error loading JSON"); }
 }
 
 function showSubcategories(category) {
@@ -13,7 +15,6 @@ function showSubcategories(category) {
     const subSelector = document.getElementById('subcategory-selector');
     subSelector.classList.remove('hidden');
     
-    // Εδώ ορίζουμε στατικά τις υποενότητες για το παράδειγμα
     let subs = [];
     if(category === 'factorization') {
         subs = [{id:'common_factor', name:'Κοινός Παράγοντας'}, {id:'grouping', name:'Ομαδοποίηση'}];
@@ -41,26 +42,54 @@ function startQuiz(cat, sub) {
 function showQuestion() {
     const stack = document.getElementById('card-stack');
     if(currentIndex >= currentQuiz.length) {
-        stack.innerHTML = `<h2>Τέλος Quiz!</h2><p class="score-board">Σκορ: ${score} / ${currentQuiz.length}</p>`;
+        stack.innerHTML = `
+            <div class="quiz-card">
+                <h2>Ολοκληρώθηκε!</h2>
+                <p class="score-board">Σκορ: ${score} / ${currentQuiz.length}</p>
+                <button class="back-btn" onclick="window.location.reload()">ΔΟΚΙΜΑΣΕ ΞΑΝΑ</button>
+            </div>`;
         return;
     }
 
     const q = currentQuiz[currentIndex];
     stack.innerHTML = `
         <div class="quiz-card">
-            <p style="color:var(--accent)">Ερώτηση ${currentIndex + 1} από ${currentQuiz.length}</p>
-            <h2>${q.question}</h2>
+            <p style="color:var(--accent); font-weight:bold;">ΕΡΩΤΗΣΗ ${currentIndex + 1} / ${currentQuiz.length}</p>
+            <h2 style="margin-bottom:30px;">${q.question}</h2>
             <div class="options-grid">
-                ${q.options.map(opt => `<button class="opt-btn" onclick="handleAnswer('${opt}', '${q.answer}')">${opt}</button>`).join('')}
+                ${q.options.map(opt => `
+                    <button class="opt-btn" onclick="handleAnswer(this, '${opt}', '${q.answer}')">${opt}</button>
+                `).join('')}
             </div>
         </div>
     `;
 }
 
-function handleAnswer(selected, correct) {
-    if(selected === correct) score++;
+function handleAnswer(btn, selected, correct) {
+    // Απενεργοποίηση όλων των κουμπιών για να μην ξαναπατηθούν
+    const allBtns = btn.parentElement.querySelectorAll('.opt-btn');
+    allBtns.forEach(b => b.style.pointerEvents = 'none');
+
+    if(selected === correct) {
+        score++;
+        btn.style.background = "#2ecc71"; // Πράσινο
+        btn.style.borderColor = "#2ecc71";
+    } else {
+        btn.style.background = "#e74c3c"; // Κόκκινο
+        btn.style.borderColor = "#e74c3c";
+        
+        // Δείξε ποιο ήταν το σωστό
+        allBtns.forEach(b => {
+            if(b.innerText === correct) {
+                b.style.background = "#2ecc71";
+                b.style.borderColor = "#2ecc71";
+            }
+        });
+    }
+
     currentIndex++;
-    setTimeout(showQuestion, 500); // Μικρή καθυστέρηση για εφέ
+    // Περίμενε 1 δευτερόλεπτο για να προλάβει ο χρήστης να δει το αποτέλεσμα
+    setTimeout(showQuestion, 1000);
 }
 
 window.onload = init;
