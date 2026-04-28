@@ -11,29 +11,38 @@ xhr.onreadystatechange = function() {
 };
 xhr.send();
 
+function normalize(str) {
+    if(!str) return "";
+    // Αφαιρεί τόνους, κενά στην αρχή/τέλος και μετατρέπει σε μικρά
+    return str.toString().normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase()
+              .replace(/\s+/g, '') // Αφαιρεί ΟΛΑ τα κενά
+              .trim();
+}
+
 function showSubcategories(catID) {
     var card = document.querySelector('[data-cat="' + catID + '"]');
-    if(!card) return;
     var subName = card.getAttribute('data-sub');
     startQuiz(subName);
 }
 
 function startQuiz(subName) {
-    var normalize = function(str) {
-        if(!str) return "";
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-    };
     var searchKey = normalize(subName);
+    
     currentQuiz = allQuestions.filter(function(q) {
         return normalize(q.subcategory) === searchKey;
     });
+
     if (currentQuiz.length > 0) {
         currentIndex = 0;
         document.getElementById('category-selector').style.display = 'none';
         document.getElementById('quiz-container').classList.remove('hidden');
         renderQuestion();
     } else {
-        alert("Δεν βρέθηκαν ερωτήσεις για: " + subName);
+        // Αν αποτύχει, μας δείχνει τι ακριβώς "βλέπει" στο πρώτο στοιχείο του JSON
+        var example = allQuestions.length > 0 ? allQuestions[0].subcategory : "EMPTY";
+        alert("DEBUG:\nΈψαξα για: [" + searchKey + "]\nΣτο JSON βρήκα: [" + normalize(example) + "]");
     }
 }
 
