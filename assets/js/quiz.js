@@ -1,3 +1,4 @@
+alert("JS_IS_ALIVE");
 let allQuestions = [];
 let currentQuiz = [];
 let currentIndex = 0;
