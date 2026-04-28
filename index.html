@@ -5,66 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math OS v4.0</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script>
-        window.MathJax = {
-            tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <div id="progress-container"><div id="progress-bar"></div></div>
     <header>
         <h1>SYSTEM_LOG // <span style="color:var(--text-muted)">MATH_G_GYMN_ULTIMATE</span></h1>
     </header>
-
     <main id="category-selector">
-        <div class="category-card" onclick="showSubcategories('ops')">
-            <h3>OPERATIONS</h3>
-            <p>SET_01 // Πράξεις & Πολυώνυμα</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('identities')">
-            <h3>IDENTITIES</h3>
-            <p>SET_02 // Ταυτότητες</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('factorization')">
-            <h3>FACTORIZATION</h3>
-            <p>SET_03 // Παραγοντοποίηση</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('rational')">
-            <h3>RATIONAL</h3>
-            <p>SET_04 // Ρητές Παραστάσεις</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('equations')">
-            <h3>EQUATIONS</h3>
-            <p>SET_05 // Εξισώσεις</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('inequalities')">
-            <h3>INEQUALITIES</h3>
-            <p>SET_06 // Ανισώσεις</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('systems')">
-            <h3>SYSTEMS</h3>
-            <p>SET_07 // Συστήματα</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('geometry')">
-            <h3>GEOMETRY</h3>
-            <p>SET_08 // Ισότητα & Ομοιότητα</p>
-        </div>
-        <div class="category-card" onclick="showSubcategories('trigonometry')">
-            <h3>TRIGONOMETRY</h3>
-            <p>SET_09 // Τριγωνομετρία</p>
-        </div>
+        <div class="category-card" data-cat="ops" onclick="showSubcategories('ops')"><h3>OPERATIONS</h3><p>SET_01 // Πράξεις</p></div>
+        <div class="category-card" data-cat="identities" onclick="showSubcategories('identities')"><h3>IDENTITIES</h3><p>SET_02 // Ταυτότητες</p></div>
+        <div class="category-card" data-cat="factorization" onclick="showSubcategories('factorization')"><h3>FACTORIZATION</h3><p>SET_03 // Παραγοντοποίηση</p></div>
+        <div class="category-card" data-cat="rational" onclick="showSubcategories('rational')"><h3>RATIONAL</h3><p>SET_04 // Ρητές</p></div>
+        <div class="category-card" data-cat="equations" onclick="showSubcategories('equations')"><h3>EQUATIONS</h3><p>SET_05 // Εξισώσεις</p></div>
+        <div class="category-card" data-cat="inequalities" onclick="showSubcategories('inequalities')"><h3>INEQUALITIES</h3><p>SET_06 // Ανισώσεις</p></div>
+        <div class="category-card" data-cat="systems" onclick="showSubcategories('systems')"><h3>SYSTEMS</h3><p>SET_07 // Συστήματα</p></div>
+        <div class="category-card" data-cat="geometry" onclick="showSubcategories('geometry')"><h3>GEOMETRY</h3><p>SET_08 // Γεωμετρία</p></div>
+        <div class="category-card" data-cat="trigonometry" onclick="showSubcategories('trigonometry')"><h3>TRIGONOMETRY</h3><p>SET_09 // Τριγωνομετρία</p></div>
     </main>
-
     <div id="subcategory-selector" class="hidden"></div>
-    <section id="quiz-container" class="hidden">
-        <div id="card-stack"></div>
-    </section>
-
+    <section id="quiz-container" class="hidden"><div id="card-stack"></div></section>
     <script src="assets/js/quiz.js"></script>
 </body>
 </html>

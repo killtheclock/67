@@ -1,37 +1,30 @@
 [
-  { 
-    "category": "rational", 
-    "subcategory": "simplification", 
-    "question": "Απλοποιήστε την παράσταση: 290681\\frac{x^2-9}{x^2-6x+9}290681", 
-    "options": ["290681\\frac{x+3}{x-3}290681", "290681\\frac{x-3}{x+3}290681", "1", "x+3"], 
-    "answer": "290681\\frac{x+3}{x-3}290681" 
+  {
+    "category": "rational",
+    "subcategory": "simplification",
+    "question": "\\frac{x^2 - 7x + 12}{x^2 - 16}",
+    "options": ["\\frac{x-3}{x+4}", "\\frac{x+3}{x-4}", "1", "\\frac{x-4}{x+4}"],
+    "answer": "\\frac{x-3}{x+4}"
   },
-  { 
-    "category": "equations", 
-    "subcategory": "quad_formula", 
-    "question": "Λύστε την εξίσωση: 2906812x^2 - 5x + 3 = 0290681", 
-    "options": ["2906811, \\frac{3}{2}290681", "290681-1, -\\frac{3}{2}290681", "0, 5", "Αδύνατη"], 
-    "answer": "2906811, \\frac{3}{2}290681" 
+  {
+    "category": "rational",
+    "subcategory": "rational_ops",
+    "question": "\\frac{x}{x-1} - \\frac{2}{x^2-1} = \\frac{x+2}{x+1}",
+    "options": ["True", "False"],
+    "answer": "True"
   },
-  { 
-    "category": "factorization", 
-    "subcategory": "trinomial", 
-    "question": "Παραγοντοποιήστε το: 290681x^2 + (\\sqrt{5}+\\sqrt{2})x + \\sqrt{10}290681", 
-    "options": ["290681(x+\\sqrt{5})(x+\\sqrt{2})290681", "290681(x-\\sqrt{5})(x-\\sqrt{2})290681", "290681(x+5)(x+2)290681", "Δεν παραγοντοποιείται"], 
-    "answer": "290681(x+\\sqrt{5})(x+\\sqrt{2})290681" 
+  {
+    "category": "factorization",
+    "subcategory": "trinomial",
+    "question": "x^2 + (\\sqrt{3}+\\sqrt{2})x + \\sqrt{6}",
+    "options": ["(x+\\sqrt{3})(x+\\sqrt{2})", "(x-\\sqrt{3})(x-\\sqrt{2})", "x(x+\\sqrt{6})", "1"],
+    "answer": "(x+\\sqrt{3})(x+\\sqrt{2})"
   },
-  { 
-    "category": "rational", 
-    "subcategory": "rational_ops", 
-    "question": "Αποτέλεσμα πράξης: 290681\\frac{1}{x-1} - \\frac{1}{x+1}290681", 
-    "options": ["290681\\frac{2}{x^2-1}290681", "2906810290681", "290681\\frac{2x}{x^2-1}290681", "1"], 
-    "answer": "290681\\frac{2}{x^2-1}290681" 
-  },
-  { 
-    "category": "trigonometry", 
-    "subcategory": "trig_identities", 
-    "question": "Αν 29068190^\circ < \\omega < 180^\circ290681 και 290681ημ\\omega = \\frac{3}{5}290681, τότε το 290681συν\\omega290681 είναι:", 
-    "options": ["290681-\\frac{4}{5}290681", "290681\\frac{4}{5}290681", "290681-\\frac{2}{5}290681", "2906811290681"], 
-    "answer": "290681-\\frac{4}{5}290681" 
+  {
+    "category": "equations",
+    "subcategory": "quad_formula",
+    "question": "2x^2 - 5x + 3 = 0",
+    "options": ["x=1, x=1.5", "x=-1, x=-1.5", "x=0", "Αδύνατη"],
+    "answer": "x=1, x=1.5"
   }
 ]
