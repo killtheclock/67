@@ -106,3 +106,45 @@ header h1 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; lett
     display: block;
 }
 .total-count { color: #4ade80; font-family: monospace; font-size: 0.8rem; display: block; margin-top: 5px; }
+
+/* Διόρθωση για μεγάλες παραστάσεις MathJax */
+.math-expression {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    max-width: 100% !important;
+    display: block;
+}
+
+.math-expression mjx-container {
+    text-align: center;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+}
+
+/* Σμίκρυνση γραμματοσειράς στα κουμπιά αν το κείμενο είναι μεγάλο */
+.opt-btn {
+    font-size: 0.9rem !important;
+    overflow: hidden;
+}
+
+/* Διόρθωση για μεγάλες παραστάσεις MathJax */
+.math-expression {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    max-width: 100% !important;
+    display: block;
+}
+
+.math-expression mjx-container {
+    text-align: center;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+}
+
+/* Σμίκρυνση γραμματοσειράς στα κουμπιά αν το κείμενο είναι μεγάλο */
+.opt-btn {
+    font-size: 0.9rem !important;
+    overflow: hidden;
+}
