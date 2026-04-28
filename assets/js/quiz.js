@@ -16,7 +16,14 @@ async function init() {
     try {
         const res = await fetch('data/questions/math_g_gymn.json');
         allQuestions = await res.json();
-    } catch (e) { console.error("JSON Load Error", e); }
+        console.log("System initialized. Data loaded.");
+    } catch (e) { 
+        console.error("JSON Load Error", e); 
+    }
+}
+
+function getCount(cat, sub) {
+    return allQuestions.filter(q => q.category === cat && q.subcategory === sub).length;
 }
 
 function showSubcategories(category) {
@@ -48,12 +55,16 @@ function showSubcategories(category) {
 
     subSelector.innerHTML = `
         <div style="display: grid; gap: 10px; width: 100%;">
-            ${subs.map(s => `
-                <div class="category-card" onclick="startQuiz('${category}', '${s.id}')">
+            ${subs.map(s => {
+                const n = getCount(category, s.id);
+                const isDisabled = n === 0;
+                return `
+                <div class="category-card" onclick="${isDisabled ? '' : `startQuiz('${category}', '${s.id}')`}" 
+                     style="${isDisabled ? 'opacity:0.4; cursor:not-allowed;' : 'cursor:pointer;'}">
                     <h3>${s.name}</h3>
-                    <p>METHOD_ID // ACCESS</p>
-                </div>
-            `).join('')}
+                    <p>AVAILABLE_ITEMS // ${n} ΑΣΚΗΣΕΙΣ</p>
+                </div>`;
+            }).join('')}
             <button class="back-btn" onclick="location.reload()">BACK_TO_CORE</button>
         </div>`;
 }
@@ -67,9 +78,11 @@ function startQuiz(cat, sub) {
 }
 
 function updateProgress() {
-    const percent = currentQuiz.length > 0 ? (currentIndex / currentQuiz.length) * 100 : 0;
     const bar = document.getElementById('progress-bar');
-    if(bar) bar.style.width = percent + '%';
+    if(bar && currentQuiz.length > 0) {
+        const percent = (currentIndex / currentQuiz.length) * 100;
+        bar.style.width = percent + '%';
+    }
 }
 
 function showQuestion() {
@@ -95,7 +108,7 @@ function showQuestion() {
     stack.innerHTML = `
         <div class="quiz-card">
             <div class="timer-text">● SIGNAL_STABLE</div>
-            <p class="question-text">ΑΣΚΗΣΗ:</p>
+            <p class="question-text">ΑΣΚΗΣΗ ${currentIndex + 1} / ${currentQuiz.length}:</p>
             <div class="math-expression">${q.question}</div>
             <div class="options-grid">
                 ${shuffledOptions.map(opt => `<button class="opt-btn" onclick="handleAnswer(this, '${opt}', '${q.answer}')">${opt}</button>`).join('')}
@@ -108,6 +121,7 @@ function handleAnswer(btn, selected, correct) {
     allBtns.forEach(b => b.style.pointerEvents = 'none');
     if(selected === correct) { score++; btn.classList.add('correct'); }
     else { btn.classList.add('incorrect'); allBtns.forEach(b => { if(b.innerText === correct) b.classList.add('correct-reveal'); }); }
-    currentIndex++; setTimeout(showQuestion, 1000);
+    currentIndex++; 
+    setTimeout(showQuestion, 1000);
 }
 window.onload = init;

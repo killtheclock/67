@@ -1,9 +1,72 @@
 [
-  { "category": "ops", "subcategory": "monomial_ops", "question": "3x² · 2x³", "options": ["6x⁵", "6x⁶", "5x⁵", "6x"], "answer": "6x⁵" },
-  { "category": "identities", "subcategory": "sq_sum", "question": "(x + 2)²", "options": ["x² + 4x + 4", "x² + 4", "x² + 2x + 4", "4x + 4"], "answer": "x² + 4x + 4" },
-  { "category": "factorization", "subcategory": "comm_fact", "question": "3x + 3y", "options": ["3(x + y)", "3xy", "x(3 + y)", "3x + y"], "answer": "3(x + y)" },
-  { "category": "rational", "subcategory": "limits", "question": "Περιορισμός για: <div class='frac'><span class='top'>1</span><span class='bottom'>x - 5</span></div>", "options": ["x ≠ 5", "x ≠ 0", "x ≠ -5", "x = 5"], "answer": "x ≠ 5" },
-  { "category": "equations", "subcategory": "quad_formula", "question": "Διακρίνουσα της x² - 4x + 4 = 0", "options": ["0", "4", "16", "-16"], "answer": "0" },
-  { "category": "geometry", "subcategory": "congruence", "question": "Κριτήριο Π-Γ-Π σημαίνει:", "options": ["Πλευρά-Γωνία-Πλευρά", "Περίμετρος-Γωνία-Πλευρά", "Πλευρά-Γωνία-Περίμετρος", "Πλευρά-Γινόμενο-Πλευρά"], "answer": "Πλευρά-Γωνία-Πλευρά" },
-  { "category": "trigonometry", "subcategory": "trig_identities", "question": "ημ²ω + συν²ω =", "options": ["1", "0", "2", "-1"], "answer": "1" }
+  { 
+    "category": "identities", 
+    "subcategory": "diff_sq", 
+    "question": "Υπολογίστε την τιμή της παράστασης: (x² - 4x + 4)(x² + 4x + 4) - x²(x² - 8) - 16", 
+    "options": ["0", "1", "x", "-16"], 
+    "answer": "0" 
+  },
+  { 
+    "category": "factorization", 
+    "subcategory": "perfect_sq", 
+    "question": "Ποια είναι η παραγοντοποιημένη μορφή της παράστασης: x⁴ - 4x² + 4;", 
+    "options": ["(x² - 2)²", "(x² + 2)²", "(x - 2)⁴", "x²(x² - 4)"], 
+    "answer": "(x² - 2)²" 
+  },
+  { 
+    "category": "rational", 
+    "subcategory": "rational_ops", 
+    "question": "Απλοποιήστε το πηλίκο: [ (x² - α²) / x ] : [ (x³ - α³) / x² ]", 
+    "options": ["x(x+α) / (x²+αx+α²)", "(x-α) / (x²+αx+α²)", "x / (x-α)", "1"], 
+    "answer": "x(x+α) / (x²+αx+α²)" 
+  },
+  { 
+    "category": "equations", 
+    "subcategory": "quad_formula", 
+    "question": "Βρείτε τις λύσεις της εξίσωσης: x² + 15x - 16 = 0", 
+    "options": ["1, -16", "-1, 16", "0, 15", "Αδύνατη"], 
+    "answer": "1, -16" 
+  },
+  { 
+    "category": "inequalities", 
+    "subcategory": "ineq_1", 
+    "question": "Αν x > 3 και y < 2, τότε η παράσταση (x - 3)(y - 2) είναι πάντα:", 
+    "options": ["< 0", "> 0", "= 0", "≥ 0"], 
+    "answer": "< 0" 
+  },
+  { 
+    "category": "systems", 
+    "subcategory": "opp_coeff", 
+    "question": "Αν οι ευθείες (λ+μ)x + y = 7 και x + (λ+3μ)y = 1 τέμνονται στο A(2, 1), τότε:", 
+    "options": ["λ=4, μ=-1", "λ=2, μ=1", "λ=1, μ=2", "λ=3, μ=0"], 
+    "answer": "λ=4, μ=-1" 
+  },
+  { 
+    "category": "geometry", 
+    "subcategory": "similarity", 
+    "question": "Σε ορθογώνιο τρίγωνο ΑΒΓ (Α=90°) με ΒΓ=10cm και ΑΓ=8cm, υπολογίστε το τμήμα ΔΓ (όπου ΑΔ το ύψος).", 
+    "options": ["6,4 cm", "3,6 cm", "5 cm", "8 cm"], 
+    "answer": "6,4 cm" 
+  },
+  { 
+    "category": "trigonometry", 
+    "subcategory": "trig_identities", 
+    "question": "Υπολογίστε το άθροισμα: ημ108° + συν77° - ημ72° + συν103°", 
+    "options": ["0", "1", "-1", "2"], 
+    "answer": "0" 
+  },
+  { 
+    "category": "trigonometry", 
+    "subcategory": "sine_cosine_law", 
+    "question": "Σε τρίγωνο ΑΒΓ είναι α=2, β=√2 και γωνία Β=30°. Η γωνία Α είναι:", 
+    "options": ["45° ή 135°", "60°", "30°", "90°"], 
+    "answer": "45° ή 135°" 
+  },
+  { 
+    "category": "factorization", 
+    "subcategory": "trinomial", 
+    "question": "Παραγοντοποιήστε το τριώνυμο: x² - (√3 + √2)x + √6", 
+    "options": ["(x - √3)(x - √2)", "(x + √3)(x + √2)", "(x - √6)(x - 1)", "Δεν παραγοντοποιείται"], 
+    "answer": "(x - √3)(x - √2)" 
+  }
 ]
