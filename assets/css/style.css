@@ -2,13 +2,11 @@
     --bg-dark: #121212;
     --text-main: #ffffff;
     --text-muted: #a0a0a0;
-    --accent: #00e676; /* Το πράσινο της προόδου */
+    --accent: #00e676;
     --border: #2c2c2c;
     --font-mono: 'Courier New', Courier, monospace;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; background: none; }
-
+* { box-sizing: border-box; margin: 0; padding: 0; background: none; border: none; }
 body { 
     background-color: var(--bg-dark); 
     color: var(--text-main);
@@ -16,83 +14,36 @@ body {
     width: 100vw; height: 100vh;
     overflow: hidden;
 }
-
-/* Header */
 header { border-bottom: 1px solid var(--border); padding: 15px; text-align: center; }
-header h1 { font-size: 0.85rem; color: var(--text-main); opacity: 0.8; }
-
-/* Category Menu */
-#category-selector { height: 90vh; overflow-y: auto; padding-bottom: 50px; }
+header h1 { font-size: 0.85rem; color: var(--text-main); }
+#category-selector { height: 90vh; overflow-y: auto; }
 .category-card { border-bottom: 1px solid var(--border); padding: 25px 20px; position: relative; }
-.category-card h3 { color: var(--text-main); font-size: 1.2rem; }
-.category-card p { color: var(--text-muted); font-size: 0.8rem; }
-
-/* ΠΡΑΣΙΝΟΙ ΑΡΙΘΜΟΙ ΧΩΡΙΣ ΑΓΚΥΛΕΣ */
-.count-tag { 
+.number-counter { 
     position: absolute; right: 20px; top: 25px; 
-    color: var(--accent); /* Πράσινο */
-    font-size: 1.1rem; font-weight: bold;
+    color: var(--accent) !important; 
+    font-size: 1.2rem; font-weight: bold;
 }
-
-/* Quiz UI Container */
 #quiz-container { 
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
     display: flex; flex-direction: column; 
     background: var(--bg-dark); z-index: 2000;
 }
-
-/* Καταργούμε το Feedback Bar για να κερδίσουμε χώρο */
-#feedback-bar { display: none; }
-
-.quiz-card { 
-    flex: 1; display: flex; flex-direction: column; 
-    justify-content: flex-start; /* Όλα πάνω */
-}
-
-/* Η ΕΡΩΤΗΣΗ ΦΤΑΝΕΙ ΤΑΒΑΝΙ */
-.question-area {
-    padding: 20px; /* Μικρό padding */
-    margin-top: 0; /* Τέρμα πάνω */
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-}
-.question-text { font-size: 1.3rem; line-height: 1.4; color: var(--text-main); }
-
-.options-grid { 
-    display: flex; flex-direction: column; 
-    gap: 10px; padding: 15px; 
-    margin-top: 10px;
-}
-
+.quiz-card { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
+.question-area { padding: 30px 20px; text-align: center; border-bottom: 1px solid var(--border); }
+.question-text { font-size: 1.3rem; line-height: 1.4; }
+.options-grid { display: flex; flex-direction: column; gap: 10px; padding: 20px; }
 .opt-btn { 
-    background: #1e1e1e; border: 1px solid var(--border); 
-    padding: 18px; font-size: 1rem; color: var(--text-main);
-    border-radius: 6px; font-family: var(--font-mono);
+    background: #1e1e1e; border: 1px solid var(--border) !important; 
+    padding: 18px; font-size: 1.1rem; color: var(--text-main);
+    border-radius: 6px;
 }
-
-/* Fixed Footer controls */
-.controls-area {
-    margin-top: auto; 
-    padding: 20px;
-    background: var(--bg-dark);
-}
-
-#progress-container {
-    height: 4px; background: #2c2c2c; width: 100%; 
-    margin-bottom: 15px; border-radius: 2px; overflow: hidden;
-}
-#progress-bar { height: 100%; background: var(--accent); width: 0%; transition: 0.3s; }
-
+.controls-area { margin-top: auto; padding: 20px; }
+.custom-progress-bg { height: 4px; background: #2c2c2c; width: 100%; margin-bottom: 15px; border-radius: 2px; overflow: hidden; }
+.custom-progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s; }
 #abort-btn { 
     width: 100%; padding: 15px; 
-    background: rgba(255, 82, 82, 0.05);
-    border: 1px solid rgba(255, 82, 82, 0.3); 
+    border: 1px solid rgba(255, 82, 82, 0.3) !important; 
     color: #ff5252; font-size: 0.8rem; font-weight: bold;
     border-radius: 6px;
 }
-
-/* Stats */
-.stats-screen { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.stats-screen h1 { font-size: 4rem; color: var(--accent); }
-
 .hidden { display: none !important; }

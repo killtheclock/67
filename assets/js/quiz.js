@@ -8,10 +8,9 @@ fetch('data/questions/math_g_gymn.json').then(r => r.json()).then(data => {
     updateCategoryCounters();
 });
 
-// Count-up Animation
 function animateCount(el, target) {
     let count = 0;
-    let speed = target > 10 ? 30 : 100; // Πιο γρήγορα για μεγάλους αριθμούς
+    let speed = 50;
     let interval = setInterval(() => {
         count++;
         el.innerText = count.toString().padStart(2, '0');
@@ -23,9 +22,9 @@ function updateCategoryCounters() {
     document.querySelectorAll('.category-card').forEach(card => {
         let sub = card.getAttribute('data-sub');
         let count = allQuestions.filter(q => q.subcategory.trim() === sub.trim()).length;
-        let tag = card.querySelector('.count-tag');
+        // Ψάχνουμε το νέο class number-counter
+        let tag = card.querySelector('.number-counter');
         if (tag && count > 0) {
-            // Αφαιρούμε τις αγκύλες και τρέχουμε το animation
             animateCount(tag, count);
         }
     });
@@ -45,8 +44,6 @@ function showSubcategories(catID) {
 
 function renderQuestion() {
     let q = currentQuiz[currentIndex];
-    
-    // Η δομή πλέον ξεκινάει απευθείας με την ερώτηση (question-area)
     let html = `
         <div class="quiz-card">
             <div class="question-area">
@@ -60,13 +57,14 @@ function renderQuestion() {
                 `).join('')}
             </div>
             <div class="controls-area">
-                <div id="progress-container"><div id="progress-bar"></div></div>
+                <div class="custom-progress-bg">
+                    <div id="quiz-fill" class="custom-progress-fill" style="width: ${(currentIndex / currentQuiz.length) * 100}%"></div>
+                </div>
                 <button id="abort-btn" onclick="location.reload()">[ ABORT_TEST ]</button>
             </div>
         </div>`;
     
     document.getElementById('card-stack').innerHTML = html;
-    updateProgressBar();
     if (window.MathJax) MathJax.typesetPromise();
 }
 
@@ -85,11 +83,6 @@ function checkAnswer(btn, selected, correct) {
     }, 600);
 }
 
-function updateProgressBar() {
-    let bar = document.getElementById('progress-bar');
-    if (bar) bar.style.width = ((currentIndex / currentQuiz.length) * 100) + "%";
-}
-
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -102,8 +95,8 @@ function showFinalStats() {
     let score = Math.round((stats.correct / stats.total) * 100);
     document.getElementById('quiz-container').innerHTML = `
         <div class="stats-screen">
-            <p style="color:var(--text-muted)">FINAL_SCORE</p>
             <h1>${score}%</h1>
-            <button onclick="location.reload()" class="opt-btn" style="margin-top:30px; width:200px;">RESTART</button>
+            <p style="color:var(--accent)">SUCCESS: ${stats.correct}/${stats.total}</p>
+            <button onclick="location.reload()" class="opt-btn" style="margin-top:30px">RESTART</button>
         </div>`;
 }
