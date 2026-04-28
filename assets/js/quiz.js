@@ -1,4 +1,26 @@
-async function loadQuiz(category) {
+let allQuestions = [];
+
+// Φόρτωση δεδομένων και αρχικοποίηση
+async function init() {
+    try {
+        const response = await fetch('data/questions/math_g_gymn.json');
+        allQuestions = await response.json();
+        updateCounts();
+    } catch (e) {
+        console.error("Failed to load questions");
+    }
+}
+
+function updateCounts() {
+    const categories = ['factorization', 'identities'];
+    categories.forEach(cat => {
+        const count = allQuestions.filter(q => q.category === cat).length;
+        const badge = document.querySelector(`.category-card[onclick*="${cat}"] .exercise-count`);
+        if (badge) badge.innerText = `${count} ασκήσεις`;
+    });
+}
+
+function loadQuiz(category) {
     const selector = document.getElementById('category-selector');
     const container = document.getElementById('quiz-container');
     const stack = document.getElementById('card-stack');
@@ -6,33 +28,37 @@ async function loadQuiz(category) {
     selector.classList.add('hidden');
     container.classList.remove('hidden');
 
-    try {
-        const response = await fetch('data/questions/math_g_gymn.json');
-        const questions = await response.json();
-        
-        const filtered = questions.filter(q => q.category === category);
-        
-        stack.innerHTML = filtered.map(q => `
-            <div class="quiz-card">
-                <h3>Άσκηση</h3>
-                <p>${q.question}</p>
-                ${q.image ? `<img src="${q.image}" style="max-width:100%">` : ''}
-                <div class="options">
-                    ${q.options.map(opt => `<button onclick="checkAnswer(this, '${q.answer}', '${opt}')">${opt}</button>`).join('')}
-                </div>
+    const filtered = allQuestions.filter(q => q.category === category);
+    
+    stack.innerHTML = filtered.map(q => `
+        <div class="quiz-card">
+            <small>ID: #${q.id}</small>
+            <p style="font-size: 1.2rem; font-weight: bold;">${q.question}</p>
+            ${q.image ? `<img src="${q.image}" style="max-width:100%; margin-bottom:10px;">` : ''}
+            <div class="options-grid">
+                ${q.options.map(opt => `
+                    <button class="opt-btn" onclick="checkAnswer(this, '${q.answer}', '${opt}')">${opt}</button>
+                `).join('')}
             </div>
-        `).join('');
-    } catch (error) {
-        stack.innerHTML = '<p>Σφάλμα κατά τη φόρτωση των ερωτήσεων.</p>';
-    }
+        </div>
+    `).join('');
 }
 
 function checkAnswer(btn, correct, selected) {
-    if (correct === selected) {
-        btn.style.background = "#2ecc71";
-        btn.style.color = "white";
+    const parent = btn.parentElement;
+    const buttons = parent.querySelectorAll('.opt-btn');
+    
+    buttons.forEach(b => b.style.pointerEvents = 'none'); // Κλείδωμα κουμπιών
+
+    if (selected === correct) {
+        btn.style.backgroundColor = 'var(--success)';
+        btn.style.color = 'white';
+        btn.style.borderColor = 'var(--success)';
     } else {
-        btn.style.background = "#e74c3c";
-        btn.style.color = "white";
+        btn.style.backgroundColor = 'var(--error)';
+        btn.style.color = 'white';
+        btn.style.borderColor = 'var(--error)';
     }
 }
+
+window.onload = init;

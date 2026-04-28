@@ -9,15 +9,17 @@
 <body>
     <header>
         <h1>Math Master <small>Γ' Γυμνασίου</small></h1>
-        <p>Επίλεξε ενότητα για να ξεκινήσεις</p>
+        <p>Επίλεξε ενότητα</p>
     </header>
 
     <main id="category-selector">
         <div class="category-card" onclick="loadQuiz('factorization')">
+            <span class="exercise-count">0 ασκήσεις</span>
             <div class="icon">^</div>
             <h2>Παραγοντοποίηση</h2>
         </div>
         <div class="category-card" onclick="loadQuiz('identities')">
+            <span class="exercise-count">0 ασκήσεις</span>
             <div class="icon">ab</div>
             <h2>Ταυτότητες</h2>
         </div>
@@ -25,7 +27,8 @@
 
     <section id="quiz-container" class="hidden">
         <div id="card-stack"></div>
-        <button class="back-btn" onclick="window.location.reload()">Πίσω στις Ενότητες</button>
+        <center><button class="back-btn" onclick="window.location.reload()">Πίσω στις Ενότητες</button></center>
+        <br>
     </section>
 
     <script src="assets/js/quiz.js"></script>
