@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('data/questions/math_g_gymn.json')
         .then(res => res.json())
         .then(data => {
+            if(data.length === 0) alert("WARNING: JSON is empty!"); else console.log("Loaded:", data.length);
             allQuestions = data;
             console.log("SYSTEM_LOG // Data Loaded");
         })
-        .catch(err => console.error("CRITICAL_ERROR // Load Failed", err));
+        .catch(err => alert("CRITICAL_ERROR: " + err.message));
 });
 
 function startQuiz(category, subcategory) {
