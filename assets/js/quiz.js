@@ -18,6 +18,7 @@ window.onload = function() {
 
 // 2. Έναρξη Quiz
 function startQuiz(category, subcategory) {
+    alert("DATA_CHECK: Έχω " + allQuestions.length + " ερωτήσεις στη μνήμη. Ψάχνω για: " + subcategory);
     // Φιλτράρισμα (Case Insensitive για σιγουριά)
     currentQuiz = allQuestions.filter(function(q) {
         return q.category.trim().toUpperCase() === category.trim().toUpperCase() && 
