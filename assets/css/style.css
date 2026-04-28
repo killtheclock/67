@@ -1,9 +1,8 @@
 :root {
     --bg-dark: #121212;
-    --bg-card: #1a1a1a;
     --text-main: #ffffff;
     --text-muted: #a0a0a0;
-    --accent: #00e676;
+    --accent: #00e676; /* Το πράσινο της προόδου */
     --border: #2c2c2c;
     --font-mono: 'Courier New', Courier, monospace;
 }
@@ -18,32 +17,52 @@ body {
     overflow: hidden;
 }
 
-/* Αφαιρούμε κάθε ίχνος παλιάς μπάρας από την κορυφή */
-#progress-bar-top, .progress-top { display: none !important; }
-
+/* Header */
 header { border-bottom: 1px solid var(--border); padding: 15px; text-align: center; }
 header h1 { font-size: 0.85rem; color: var(--text-main); opacity: 0.8; }
 
+/* Category Menu */
 #category-selector { height: 90vh; overflow-y: auto; padding-bottom: 50px; }
 .category-card { border-bottom: 1px solid var(--border); padding: 25px 20px; position: relative; }
+.category-card h3 { color: var(--text-main); font-size: 1.2rem; }
+.category-card p { color: var(--text-muted); font-size: 0.8rem; }
 
+/* ΠΡΑΣΙΝΟΙ ΑΡΙΘΜΟΙ ΧΩΡΙΣ ΑΓΚΥΛΕΣ */
+.count-tag { 
+    position: absolute; right: 20px; top: 25px; 
+    color: var(--accent); /* Πράσινο */
+    font-size: 1.1rem; font-weight: bold;
+}
+
+/* Quiz UI Container */
 #quiz-container { 
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
     display: flex; flex-direction: column; 
     background: var(--bg-dark); z-index: 2000;
 }
 
-#feedback-bar { 
-    padding: 10px; text-align: center; font-size: 0.7rem; 
-    color: var(--text-muted); border-bottom: 1px solid var(--border);
+/* Καταργούμε το Feedback Bar για να κερδίσουμε χώρο */
+#feedback-bar { display: none; }
+
+.quiz-card { 
+    flex: 1; display: flex; flex-direction: column; 
+    justify-content: flex-start; /* Όλα πάνω */
 }
 
-.quiz-card { flex: 1; display: flex; flex-direction: column; }
+/* Η ΕΡΩΤΗΣΗ ΦΤΑΝΕΙ ΤΑΒΑΝΙ */
+.question-area {
+    padding: 20px; /* Μικρό padding */
+    margin-top: 0; /* Τέρμα πάνω */
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+.question-text { font-size: 1.3rem; line-height: 1.4; color: var(--text-main); }
 
-.question-area { padding: 40px 20px; text-align: center; }
-.question-text { font-size: 1.4rem; line-height: 1.4; }
-
-.options-grid { display: flex; flex-direction: column; gap: 8px; padding: 0 15px; }
+.options-grid { 
+    display: flex; flex-direction: column; 
+    gap: 10px; padding: 15px; 
+    margin-top: 10px;
+}
 
 .opt-btn { 
     background: #1e1e1e; border: 1px solid var(--border); 
@@ -51,29 +70,18 @@ header h1 { font-size: 0.85rem; color: var(--text-main); opacity: 0.8; }
     border-radius: 6px; font-family: var(--font-mono);
 }
 
-/* FOOTER CONTROLS */
+/* Fixed Footer controls */
 .controls-area {
-    margin-top: auto;
+    margin-top: auto; 
     padding: 20px;
     background: var(--bg-dark);
-    border-top: 1px solid var(--border);
 }
 
-/* Η ΓΡΑΜΜΗ ΠΡΟΟΔΟΥ ΠΟΥ ΖΗΤΗΣΕΣ */
 #progress-container {
-    height: 4px; 
-    background: #2c2c2c; 
-    width: 100%; 
-    margin-bottom: 20px; 
-    border-radius: 2px;
-    overflow: hidden;
+    height: 4px; background: #2c2c2c; width: 100%; 
+    margin-bottom: 15px; border-radius: 2px; overflow: hidden;
 }
-#progress-bar { 
-    height: 100%; 
-    background: var(--accent); 
-    width: 0%; 
-    transition: width 0.4s ease; 
-}
+#progress-bar { height: 100%; background: var(--accent); width: 0%; transition: 0.3s; }
 
 #abort-btn { 
     width: 100%; padding: 15px; 
@@ -83,20 +91,8 @@ header h1 { font-size: 0.85rem; color: var(--text-main); opacity: 0.8; }
     border-radius: 6px;
 }
 
-/* FINAL SCORE ANIMATION */
+/* Stats */
 .stats-screen { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.score-circle-bg {
-    width: 150px; height: 150px; border-radius: 50%;
-    border: 5px solid #2c2c2c; position: relative;
-    display: flex; justify-content: center; align-items: center;
-    margin-bottom: 20px;
-}
-.score-fill {
-    position: absolute; width: 100%; height: 100%;
-    border-radius: 50%; border: 5px solid var(--accent);
-    clip-path: inset(100% 0 0 0); /* Θα αλλάξει με JS */
-    transition: clip-path 1.5s ease-out;
-}
-.stats-screen h1 { font-size: 3rem; color: var(--accent); z-index: 10; }
+.stats-screen h1 { font-size: 4rem; color: var(--accent); }
 
 .hidden { display: none !important; }
