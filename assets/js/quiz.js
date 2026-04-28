@@ -7,16 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('data/questions/math_g_gymn.json')
         .then(res => res.json())
         .then(data => {
-            if(data.length === 0) alert("WARNING: JSON is empty!"); else console.log("Loaded:", data.length);
             allQuestions = data;
-            console.log("SYSTEM_LOG // Data Loaded");
+            console.log("System: Data Loaded");
         })
-        .catch(err => alert("CRITICAL_ERROR: " + err.message));
+        .catch(err => alert("Σφάλμα φόρτωσης: " + err));
 });
 
 function startQuiz(category, subcategory) {
-    currentQuiz = allQuestions.filter(q => q.category === category && q.subcategory === subcategory);
-    if (currentQuiz.length === 0) return;
+    // Μετατρέπουμε σε κεφαλαία και αφαιρούμε κενά για σίγουρο ταίριασμα
+    currentQuiz = allQuestions.filter(q => 
+        q.category.trim().toUpperCase() === category.trim().toUpperCase() && 
+        q.subcategory.trim().toUpperCase() === subcategory.trim().toUpperCase()
+    );
+
+    if (currentQuiz.length === 0) {
+        alert("Δεν βρέθηκαν ερωτήσεις για: " + subcategory + "\n\nΒεβαιώσου ότι το όνομα στο index.html είναι ολόιδιο με το JSON!");
+        return;
+    }
+
     currentIndex = 0;
     score = 0;
     document.getElementById('menu-screen').classList.add('hidden');
@@ -27,11 +35,15 @@ function startQuiz(category, subcategory) {
 function showQuestion() {
     const q = currentQuiz[currentIndex];
     const quizBox = document.getElementById('quiz-box');
+    
     quizBox.innerHTML = `
-        <div class="question-text">${q.question}</div>
-        <div class="options-grid">
+        <div class="question-text" style="font-size:1.2rem; margin-bottom:20px; color:#fff;">${q.question}</div>
+        <div class="options-grid" style="display:grid; gap:10px;">
             ${q.options.map(opt => `
-                <button class="opt-btn" onclick="handleAnswer(this, '${opt}', '${q.answer}')">${opt}</button>
+                <button class="opt-btn" onclick="handleAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\")}')" 
+                style="padding:15px; background:rgba(0,255,0,0.1); border:1px solid #00ff00; color:#00ff00; cursor:pointer;">
+                    ${opt}
+                </button>
             `).join('')}
         </div>
     `;
@@ -41,14 +53,18 @@ function showQuestion() {
 function handleAnswer(btn, selected, correct) {
     const btns = btn.parentElement.querySelectorAll('.opt-btn');
     btns.forEach(b => b.style.pointerEvents = 'none');
+    
     if (selected === correct) {
-        btn.classList.add('correct');
+        btn.style.background = "#00ff00";
+        btn.style.color = "#000";
         score++;
     } else {
-        btn.classList.add('incorrect');
+        btn.style.background = "#ff0000";
+        btn.style.color = "#fff";
     }
-    currentIndex++;
+
     setTimeout(() => {
+        currentIndex++;
         if (currentIndex < currentQuiz.length) {
             showQuestion();
         } else {
@@ -61,11 +77,11 @@ function showFinalStats() {
     const quizBox = document.getElementById('quiz-box');
     const accuracy = Math.round((score / currentQuiz.length) * 100) || 0;
     quizBox.innerHTML = `
-        <div class="stats-screen" style="text-align:center; padding:20px;">
-            <h2 style="color:#00ff00;">MISSION_COMPLETE //</h2>
+        <div class="stats-screen" style="text-align:center; color:#00ff00;">
+            <h2>MISSION_COMPLETE //</h2>
             <p>ACCURACY: ${accuracy}%</p>
             <p>SCORE: ${score} / ${currentQuiz.length}</p>
-            <button onclick="location.reload()" class="opt-btn" style="margin-top:20px; width:100%;">[ REBOOT_SYSTEM ]</button>
+            <button onclick="location.reload()" class="opt-btn" style="margin-top:20px; width:100%; padding:15px;">[ REBOOT_SYSTEM ]</button>
         </div>
     `;
 }
