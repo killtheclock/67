@@ -103,17 +103,20 @@ function handleAnswer(btn, selected, correct) {
 }
 
 function showFinalStats() {
-    const stack = document.getElementById('card-stack');
-    const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
-    const accuracy = ((score / currentQuiz.length) * 100).toFixed(0);
-    
-    stack.innerHTML = `
-        <div class="quiz-card">
-            <h2 style="color:#4ade80;">MISSION_COMPLETE</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0; text-align:left;">
-                <div style="border:1px solid #333; padding:10px;">
-                    <div style="font-size:0.7rem; color:#888;">SCORE</div>
-                    <div style="font-size:1.2rem;">${score}/${currentQuiz.length}</div>
+    const quizBox = document.getElementById("quiz-box");
+    const accuracy = Math.round((score / currentQuiz.length) * 100) || 0;
+    quizBox.innerHTML = `
+        <div class="stats-screen" style="text-align:center; padding:20px;">
+            <h2 style="color:var(--neon-green);">MISSION_COMPLETE //</h2>
+            <div style="margin:20px 0; font-family:monospace;">
+                <p>ACCURACY: ${accuracy}%</p>
+                <p>SCORE: ${score} / ${currentQuiz.length}</p>
+            </div>
+            <button onclick="location.reload()" class="opt-btn" style="border:1px solid var(--neon-green); background:transparent; color:var(--neon-green); padding:15px; cursor:pointer; width:100%;">
+                [ REBOOT_SYSTEM ]
+            </button>
+        </div>`;
+}
                 </div>
                 <div style="border:1px solid #333; padding:10px;">
                     <div style="font-size:0.7rem; color:#888;">ACCURACY</div>
