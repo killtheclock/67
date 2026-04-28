@@ -1,0 +1,25 @@
+name: System Heartbeat Check
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JS Syntax
+        run: node -c assets/js/quiz.js
+
+      - name: Validate JSON Syntax
+        # Ελέγχει αν το JSON είναι σωστά δομημένο
+        run: |
+          node -e "try { JSON.parse(require('fs').readFileSync('data/questions/math_g_gymn.json', 'utf8')); console.log('JSON OK'); } catch (e) { console.error('JSON ERROR:', e.message); process.exit(1); }"
