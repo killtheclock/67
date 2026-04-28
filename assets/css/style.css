@@ -1,18 +1,20 @@
 :root {
-    --bg-main: #f4f4f4; /* Πολύ ανοιχτό γκρι */
-    --bg-card: #ffffff;
-    --text-main: #111111;
-    --text-muted: #666666;
-    --border-color: #111111; /* Έντονο μαύρο περίγραμμα */
-    --accent: #111111; /* Όλα μονοχρωματικά */
-    --success-bg: #e6fffa;
-    --error-bg: #fff5f5;
+    --bg-main: #0a0a0a; /* Σχεδόν μαύρο */
+    --bg-card: #141414; /* Πολύ σκούρο γκρι */
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --border-color: #333333; /* Διακριτικό border */
+    --border-active: #ffffff; /* Ενεργό border */
+    --success-bg: #062016;
+    --success-text: #4ade80;
+    --error-bg: #2d0a0a;
+    --error-text: #f87171;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
     display: flex;
@@ -23,83 +25,86 @@ body {
 }
 
 header { padding: 30px 20px; text-align: left; width: 100%; max-width: 800px; }
-header h1 { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+header h1 { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); }
 
 .hidden { display: none !important; }
 
-/* Κοινό στυλ για κάρτες ενοτήτων και quiz */
-.category-card, .quiz-card {
-    background: var(--bg-card);
-    border: 2px solid var(--border-color); /* Έντονο border */
-    border-radius: 0; /* Τετράγωνα όρια */
-    padding: 20px;
-    width: 100%;
-    position: relative;
-    transition: 0.2s;
-}
-
-/* Category Selector Layout */
 #category-selector, #subcategory-selector {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
+    gap: 12px;
     width: 90%;
     max-width: 800px;
 }
 
-.category-card:hover {
-    background-color: #fafafa;
-    transform: translate(-2px, -2px); /* Μικρό εφέ κίνησης αντί για σκιά */
+.category-card, .quiz-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    width: 100%;
+    transition: 0.2s ease;
 }
 
-.category-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 5px; }
-.category-card p { font-size: 0.8rem; color: var(--text-muted); }
+.category-card:hover {
+    border-color: var(--border-active);
+    background-color: #1a1a1a;
+}
 
-/* Quiz Layout */
+.category-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; color: var(--text-main); }
+.category-card p { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+
 #quiz-container { width: 95%; max-width: 600px; margin: 0 auto; }
 
-/* Εκφώνηση (μικρή, γκρι) */
 .question-text {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
-/* Μαθηματική Παράσταση (Monospace, μεγάλη, έντονη) */
 .math-expression {
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 1.8rem;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 1.6rem;
     font-weight: 700;
-    margin-bottom: 25px;
-    word-wrap: break-word;
+    margin-bottom: 24px;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
 }
 
-.options-grid { display: grid; gap: 10px; width: 100%; }
+.options-grid { display: grid; gap: 8px; width: 100%; }
 
-/* Κουμπιά επιλογών (τετράγωνα, με border) */
 .opt-btn {
     background: var(--bg-card);
-    border: 1px solid #cccccc; /* Ανοιχτό border αρχικά */
+    border: 1px solid var(--border-color);
     color: var(--text-main);
-    padding: 15px;
-    border-radius: 4px; /* Πολύ μικρό radius */
+    padding: 16px;
     cursor: pointer;
     font-size: 1rem;
-    font-family: inherit;
     text-align: left;
     width: 100%;
-    transition: 0.2s;
+    transition: 0.15s;
 }
 
-.opt-btn:hover { border-color: var(--border-color); background-color: #fafafa; }
+.opt-btn:hover { border-color: var(--border-active); background-color: #1f1f1f; }
 
-/* Status Classes */
-.correct { background-color: var(--success-bg) !important; border-color: #2ecc71 !important; color: #2ecc71 !important; }
-.incorrect { background-color: var(--error-bg) !important; border-color: #e74c3c !important; color: #e74c3c !important; }
-.correct-reveal { border: 2px solid #2ecc71 !important; color: #2ecc71 !important; }
+/* Status Styles */
+.correct { background-color: var(--success-bg) !important; border-color: var(--success-text) !important; color: var(--success-text) !important; }
+.incorrect { background-color: var(--error-bg) !important; border-color: var(--error-text) !important; color: var(--error-text) !important; }
+.correct-reveal { border-color: var(--success-text) !important; color: var(--success-text) !important; }
 
-/* Score & Navigation */
-.score-board { font-size: 3rem; font-weight: 700; margin: 20px 0; }
-.back-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); padding: 12px 25px; border-radius: 4px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
+.score-board { font-size: 3.5rem; font-weight: 800; margin: 15px 0; letter-spacing: -2px; }
+.back-btn { 
+    background: transparent; 
+    border: 1px solid var(--border-color); 
+    color: var(--text-muted); 
+    padding: 14px; 
+    cursor: pointer; 
+    margin-top: 20px; 
+    width: 100%; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+.back-btn:hover { border-color: var(--text-main); color: var(--text-main); }
