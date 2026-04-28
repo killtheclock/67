@@ -1,30 +1,30 @@
-let allQuestions = [];
+alert("1. Script Started");
 
-alert("SYSTEM: Checking JSON source...");
+// Χρησιμοποιούμε var για μέγιστη συμβατότητα με παλιά κινητά
+var allQuestions = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Δοκιμάζουμε να φορτώσουμε το αρχείο
+window.onload = function() {
+    alert("2. Page Loaded - Fetching JSON...");
+    
     fetch('data/questions/math_g_gymn.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Το αρχείο JSON δεν βρέθηκε (Status: " + response.status + ")");
-            }
-            return response.json();
+        .then(function(res) { 
+            return res.json(); 
         })
-        .then(data => {
+        .then(function(data) {
             allQuestions = data;
-            alert("SUCCESS: Φορτώθηκαν " + data.length + " ερωτήσεις!");
+            alert("3. SUCCESS! Found " + data.length + " questions.");
         })
-        .catch(err => {
-            alert("CRITICAL_ERROR: " + err.message);
+        .catch(function(err) {
+            alert("3. ERROR: " + err.message);
         });
-});
+};
 
 function startQuiz(cat, sub) {
+    alert("Attempting to start: " + sub);
     if (allQuestions.length === 0) {
-        alert("Αδύνατη η έναρξη: Η λίστα ερωτήσεων είναι άδεια.");
+        alert("Wait! Data not loaded yet.");
         return;
     }
-    // ... υπόλοιπος κώδικας ...
-    alert("Starting: " + sub);
+    // Εδώ θα μπει ο υπόλοιπος κώδικας αφού σιγουρευτούμε ότι δουλεύουν τα alerts
+    console.log(cat, sub);
 }
