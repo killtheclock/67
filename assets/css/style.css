@@ -1,11 +1,13 @@
 :root {
     --main-bg: #1a1e34;
     --card-bg: #27293d;
-    --accent: #e14eca; /* Pink gradient like the image */
+    --accent: #e14eca;
     --text: #ffffff;
     --text-muted: #9a9a9a;
     --border: rgba(255, 255, 255, 0.1);
 }
+
+* { box-sizing: border-box; }
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -16,80 +18,83 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    overflow-x: hidden; /* Fix για το κούνημα δεξιά-αριστερά */
 }
 
-header { padding: 40px; text-align: center; }
-header h1 { margin: 0; font-weight: 300; letter-spacing: 2px; }
+header { padding: 30px 20px; text-align: center; width: 100%; }
 
 #category-selector {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     width: 90%;
     max-width: 1000px;
 }
 
+/* Ορίζουμε ότι όταν κάτι είναι hidden, φεύγει τελείως από το layout */
+.hidden { display: none !important; }
+
 .category-card {
     background: var(--card-bg);
     border-radius: 8px;
-    padding: 25px;
-    text-align: left;
+    padding: 20px;
     cursor: pointer;
     border: 1px solid var(--border);
-    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    transition: 0.3s;
 }
 
 .category-card::before {
     content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0; width: 4px;
+    position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
     background: linear-gradient(to bottom, #f06, #4a90e2);
 }
 
-.category-card:hover { transform: translateY(-5px); background: #2b2e4a; }
+#quiz-container {
+    width: 95%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-.exercise-count { color: var(--accent); font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
-
-.hidden { display: none; }
-
-/* Quiz Cards Style */
 .quiz-card {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
     width: 100%;
-    max-width: 700px;
-    margin: 20px auto;
+    margin-bottom: 20px;
     border: 1px solid var(--border);
 }
 
 .options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
 }
 
 .opt-btn {
     background: transparent;
     border: 1px solid var(--accent);
     color: var(--text);
-    padding: 12px;
+    padding: 15px;
     border-radius: 30px;
     cursor: pointer;
+    font-size: 0.9rem;
+    width: 100%;
     transition: 0.3s;
 }
 
-.opt-btn:hover { background: var(--accent); }
+.opt-btn:hover { background: rgba(225, 78, 202, 0.1); }
 
 .back-btn {
-    background: transparent;
-    color: var(--text-muted);
-    border: 1px solid var(--text-muted);
-    padding: 8px 20px;
-    border-radius: 20px;
+    background: #27293d;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 12px 25px;
+    border-radius: 30px;
     cursor: pointer;
-    margin-top: 30px;
+    margin: 20px 0;
+    font-weight: bold;
 }
