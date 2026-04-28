@@ -3,7 +3,7 @@ let currentQuiz = [];
 let currentIndex = 0;
 let score = 0;
 
-// Συνάρτηση Ανακατέματος (Fisher-Yates Shuffle)
+// Fisher-Yates Shuffle
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -34,6 +34,7 @@ function showSubcategories(category) {
     subSelector.innerHTML = subs.map(s => `
         <div class="category-card" onclick="startQuiz('${category}', '${s.id}')">
             <h3>${s.name}</h3>
+            <p>Ενότητα Γ' Γυμνασίου</p>
         </div>
     `).join('');
 }
@@ -41,10 +42,7 @@ function showSubcategories(category) {
 function startQuiz(cat, sub) {
     document.getElementById('subcategory-selector').classList.add('hidden');
     document.getElementById('quiz-container').classList.remove('hidden');
-    
-    // Φιλτράρισμα και μετά ΑΝΑΚΑΤΕΜΑ των ερωτήσεων
     currentQuiz = shuffle(allQuestions.filter(q => q.category === cat && q.subcategory === sub));
-    
     currentIndex = 0;
     score = 0;
     showQuestion();
@@ -54,26 +52,24 @@ function showQuestion() {
     const stack = document.getElementById('card-stack');
     if(currentIndex >= currentQuiz.length) {
         stack.innerHTML = `
-            <div class="quiz-card">
-                <h2>Ολοκληρώθηκε!</h2>
-                <p style="font-size:2rem; color:var(--accent);">${score} / ${currentQuiz.length}</p>
-                <button class="opt-btn" style="background:var(--accent-grad); color:white; border:none;" onclick="window.location.reload()">ΕΠΙΣΤΡΟΦΗ</button>
+            <div class="quiz-card" style="text-align:center;">
+                <p class="question-text">ΑΠΟΤΕΛΕΣΜΑΤΑ</p>
+                <div class="score-board">${score} / ${currentQuiz.length}</div>
+                <button class="back-btn" onclick="window.location.reload()">BACK TO DASHBOARD</button>
             </div>`;
         return;
     }
 
     const q = currentQuiz[currentIndex];
-    
-    // ΑΝΑΚΑΤΕΜΑ και των επιλογών για να μην είναι πάντα η σωστή στην ίδια θέση
     const shuffledOptions = shuffle([...q.options]);
 
     let parts = q.question.split(':');
-    let instruction = parts[0] ? parts[0].trim() + ':' : 'Άσκηση:';
+    let instruction = parts[0] ? parts[0].trim() : 'Άσκηση';
     let expression = parts[1] ? parts[1].trim() : q.question;
 
     stack.innerHTML = `
         <div class="quiz-card">
-            <p style="color:var(--accent); font-size:0.8rem; margin-bottom:10px;">ΕΡΩΤΗΣΗ ${currentIndex + 1} / ${currentQuiz.length}</p>
+            <p style="color:var(--text-muted); font-size:0.7rem; margin-bottom:15px; font-weight:600;">${currentIndex + 1} OF ${currentQuiz.length}</p>
             <div class="question-text">${instruction}</div>
             <div class="math-expression">${expression}</div>
             <div class="options-grid">
@@ -91,23 +87,19 @@ function handleAnswer(btn, selected, correct) {
 
     if(selected === correct) {
         score++;
-        btn.style.background = "#2ecc71";
-        btn.style.borderColor = "#2ecc71";
-        btn.style.color = "white";
+        btn.classList.add('correct');
     } else {
-        btn.style.background = "#e74c3c";
-        btn.style.borderColor = "#e74c3c";
-        btn.style.color = "white";
+        btn.classList.add('incorrect');
+        // Αποκάλυψη του σωστού
         allBtns.forEach(b => {
             if(b.innerText === correct) {
-                b.style.border = "2px solid #2ecc71";
-                b.style.color = "#2ecc71";
+                b.classList.add('correct-reveal');
             }
         });
     }
 
     currentIndex++;
-    setTimeout(showQuestion, 1200);
+    setTimeout(showQuestion, 1100);
 }
 
 window.onload = init;
