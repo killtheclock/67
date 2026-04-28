@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Dashboard</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Math OS v2.1</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=2.2">
 </head>
 <body>
+    <div id="progress-container"><div id="progress-bar"></div></div>
+    
     <header>
-        <h1>DASHBOARD <span style="color:var(--accent)">MATH</span></h1>
+        <h1>SYSTEM_LOG // <span style="color:var(--text-muted)">MATH_G_GYMN</span></h1>
     </header>
 
     <main id="category-selector">
         <div class="category-card" onclick="showSubcategories('factorization')">
-            <h3>Παραγοντοποίηση</h3>
-            <p>Επίλεξε μέθοδο</p>
+            <h3>FACTORIZATION</h3>
+            <p>DATA_SET_01</p>
         </div>
         <div class="category-card" onclick="showSubcategories('identities')">
-            <h3>Ταυτότητες</h3>
-            <p>Βασικά αναπτύγματα</p>
+            <h3>IDENTITIES</h3>
+            <p>DATA_SET_02</p>
         </div>
     </main>
 
@@ -26,9 +28,8 @@
 
     <section id="quiz-container" class="hidden">
         <div id="card-stack"></div>
-        <button class="back-btn" onclick="window.location.reload()">BACK TO DASHBOARD</button>
     </section>
 
-    <script src="assets/js/quiz.js"></script>
+    <script src="assets/js/quiz.js?v=2.2"></script>
 </body>
 </html>
