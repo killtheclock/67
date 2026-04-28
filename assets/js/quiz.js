@@ -10,6 +10,12 @@ fetch('data/questions/math_g_gymn.json')
         updateCategoryCounters();
     });
 
+function vibrate(ms) {
+    if (navigator.vibrate) {
+        navigator.vibrate(ms);
+    }
+}
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -27,6 +33,7 @@ function updateCategoryCounters() {
 }
 
 function showSubcategories(catID) {
+    vibrate(20); // Κλικ δόνηση
     let sub = document.querySelector(`[data-cat="${catID}"]`).getAttribute('data-sub');
     let filtered = allQuestions.filter(q => q.subcategory.trim() === sub.trim());
     if (filtered.length > 0) {
@@ -50,7 +57,7 @@ function renderQuestion() {
             <div class="question-text">\\( ${q.question} \\)</div>
             <div class="options-grid">
                 ${shuffle([...q.options]).map(opt => `
-                    <button class="opt-btn" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\")}')">
+                    <button class="opt-btn" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}')">
                         \\( ${opt} \\)
                     </button>
                 `).join('')}
@@ -62,15 +69,19 @@ function renderQuestion() {
 }
 
 function checkAnswer(btn, selected, correct) {
-    let fb = document.getElementById('feedback-bar');
     document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+    let fb = document.getElementById('feedback-bar');
+
     if (selected === correct) {
+        vibrate([30, 30, 30]); // Διπλό "τικ" για επιτυχία
         fb.innerText = "STATUS: SUCCESS"; fb.style.color = "#00ff00"; stats.correct++;
         btn.style.background = "#004400";
     } else {
+        vibrate(200); // Μακρύ "βουητό" για λάθος
         fb.innerText = "STATUS: FAILURE"; fb.style.color = "#ff0000";
         btn.style.background = "#440000";
     }
+
     setTimeout(() => {
         currentIndex++;
         if (currentIndex < currentQuiz.length) renderQuestion();
@@ -79,15 +90,19 @@ function checkAnswer(btn, selected, correct) {
 }
 
 function showFinalStats() {
+    vibrate([50, 100, 50, 100, 50]); // Pattern τέλους
     let score = Math.round((stats.correct / stats.total) * 100);
     document.getElementById('quiz-container').innerHTML = `
         <div class="stats-screen">
             <p>CRITICAL_ANALYSIS_COMPLETE</p>
             <h1>${score}%</h1>
             <p style="margin-bottom:40px;">SUCCESS_RATE: ${stats.correct}/${stats.total}</p>
-            <button onclick="location.reload()" id="abort-btn" style="position:static; width:90%; border:2px solid white;">[ RETURN_TO_MAIN_MENU ]</button>
+            <button onclick="goHome()" id="abort-btn" style="position:static; width:90%; border:2px solid white;">[ RETURN_TO_MAIN_MENU ]</button>
         </div>
     `;
 }
 
-function goHome() { window.location.reload(); }
+function goHome() { 
+    vibrate(40);
+    window.location.reload(); 
+}
