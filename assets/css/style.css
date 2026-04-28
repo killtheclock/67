@@ -1,7 +1,7 @@
 :root {
     --main-bg: #1a1e34;
     --card-bg: #27293d;
-    --accent: #ff8d72; /* Πορτοκαλί της Creative Tim */
+    --accent: #ff8d72;
     --accent-grad: linear-gradient(to right, #ff8d72, #ff6491);
     --text: #ffffff;
     --text-muted: #9a9a9a;
@@ -17,13 +17,13 @@ body {
     overflow-x: hidden;
 }
 
-header { padding: 40px; text-align: center; }
+header { padding: 20px; text-align: center; }
 .hidden { display: none !important; }
 
 #category-selector, #subcategory-selector {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
     width: 90%;
     max-width: 1000px;
     margin: 0 auto;
@@ -32,7 +32,7 @@ header { padding: 40px; text-align: center; }
 .category-card {
     background: var(--card-bg);
     border-radius: 8px;
-    padding: 25px;
+    padding: 20px;
     cursor: pointer;
     border: 1px solid var(--border);
     position: relative;
@@ -45,20 +45,57 @@ header { padding: 40px; text-align: center; }
     background: var(--accent-grad);
 }
 
-/* Quiz Style */
-#quiz-container { width: 90%; max-width: 600px; margin: 0 auto; text-align: center; }
-.quiz-card { background: var(--card-bg); border-radius: 15px; padding: 30px; border: 1px solid var(--border); }
-.options-grid { display: grid; gap: 15px; margin-top: 20px; }
+/* Quiz Style Improvements */
+#quiz-container { width: 95%; max-width: 600px; margin: 0 auto; }
+
+.quiz-card { 
+    background: var(--card-bg); 
+    border-radius: 15px; 
+    padding: 20px; 
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Εκφώνηση */
+.question-text {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Η Μαθηματική Παράσταση */
+.math-expression {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 15px 0 25px 0;
+    display: block;
+    line-height: 1.2;
+    word-wrap: break-word; /* Για να μην βγαίνει εκτός ορίων */
+}
+
+.options-grid { display: grid; gap: 10px; }
+
 .opt-btn {
     background: transparent;
     border: 1px solid var(--accent);
     color: var(--text);
-    padding: 12px;
+    padding: 14px;
     border-radius: 30px;
     cursor: pointer;
+    font-size: 0.95rem;
     transition: 0.3s;
+    width: 100%;
 }
-.opt-btn:hover { background: var(--accent-grad); border-color: transparent; }
 
-.score-board { font-size: 1.5rem; color: var(--accent); margin-bottom: 20px; }
-.back-btn { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 10px 20px; border-radius: 30px; cursor: pointer; margin-top: 20px; }
+.opt-btn:hover { background: rgba(255, 141, 114, 0.1); }
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .math-expression { font-size: 1.25rem; }
+    header h1 { font-size: 1.5rem; }
+}
+
+.back-btn { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 10px 20px; border-radius: 30px; cursor: pointer; margin-top: 20px; width: 100%; }
