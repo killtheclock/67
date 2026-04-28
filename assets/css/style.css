@@ -105,3 +105,4 @@ header h1 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; lett
     margin-top: 5px;
     display: block;
 }
+.total-count { color: #4ade80; font-family: monospace; font-size: 0.8rem; display: block; margin-top: 5px; }

@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math OS v3.0</title>
-    <link rel="stylesheet" href="assets/css/style.css?v=3.0">
+    <title>Math OS v4.0</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
 </head>
 <body>
     <div id="progress-container"><div id="progress-bar"></div></div>
-    
     <header>
-        <h1>SYSTEM_LOG // <span style="color:var(--text-muted)">MATH_G_GYMN_FULL</span></h1>
+        <h1>SYSTEM_LOG // <span style="color:var(--text-muted)">MATH_G_GYMN_ULTIMATE</span></h1>
     </header>
 
     <main id="category-selector">
@@ -53,11 +61,10 @@
     </main>
 
     <div id="subcategory-selector" class="hidden"></div>
-
     <section id="quiz-container" class="hidden">
         <div id="card-stack"></div>
     </section>
 
-    <script src="assets/js/quiz.js?v=3.0"></script>
+    <script src="assets/js/quiz.js"></script>
 </body>
 </html>
