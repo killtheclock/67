@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "title": "ORACLE",
+    "subtitle": "The Architecture of Coffee",
+    "buttonText": "Reserve Blend"
+  },
+  "sections": [
+    {
+      "id": "docs",
+      "title": "Curated",
+      "description": "Limited release origins & technical roasts.",
+      "links": [
+        { "label": "Journal", "url": "#" },
+        { "label": "Wholesale", "url": "#" }
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Sanctuaries",
+      "description": "Global atelier locations.",
+      "links": [
+        { "label": "GitHub", "url": "https://github.com/vitejs/vite", "icon": "github-icon" },
+        { "label": "Discord", "url": "https://chat.vite.dev/", "icon": "discord-icon" },
+        { "label": "X.com", "url": "https://x.com/vite_js", "icon": "x-icon" },
+        { "label": "Bluesky", "url": "https://bsky.app/profile/vite.dev", "icon": "bluesky-icon" }
+      ]
+    }
+  ]
+}

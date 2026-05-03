@@ -1,0 +1,25 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    restart: always
+
+  aider:
+    image: paulgauthier/aider-full
+    container_name: aider
+    volumes:
+      - ./:/app
+    network_mode: host
+    environment:
+      - OLLAMA_API_BASE=http://127.0.0.1:11434
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    entrypoint: ["aider", "--model", "ollama/qwen2.5-coder:1.5b", "--browser", "none", "--no-auto-commits"]
+
+volumes:
+  ollama_data:
